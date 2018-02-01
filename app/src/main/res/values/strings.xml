@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Find a 5aside</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="settings">settings</string>
+    <string name="buttonimage1">buttonImage1</string>
+    <string name="buttonimage2">buttonImage2</string>
+    <string name="buttonimage3">buttonImage3</string>
+    <string name="find_a_game_buttonText">Find a game</string>
+    <string name="my_profile">My Profile</string>
+    <string name="settingss">Settings</string>
+    <string name="settingstext">Settings</string>
+    <string name="profile">Profile</string>
+    <string name="find_a_gameTitle">Find a game</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+</resources>

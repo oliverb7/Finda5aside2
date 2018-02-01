@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1045520151798",
+    "firebase_url": "https://find-a-5aside.firebaseio.com",
+    "project_id": "find-a-5aside",
+    "storage_bucket": "find-a-5aside.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045520151798:android:63276d45a0ebe965",
+        "android_client_info": {
+          "package_name": "com.example.oliverbaird.finda5aside"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045520151798-tfafdgpj2pmpjmj68hsm3m58um8ei443.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.oliverbaird.finda5aside",
+            "certificate_hash": "6e6490522a2926f5a77ffddc44c833dc6a225329"
+          }
+        },
+        {
+          "client_id": "1045520151798-u6qee6cj8obff6cknufovtniul04a821.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUSaKtcYrcGayuOWZA53Bce-YFRMewToo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045520151798-u6qee6cj8obff6cknufovtniul04a821.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
