@@ -33,7 +33,6 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
     private List<Game> myGames = new ArrayList<Game>();
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,12 +72,12 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
 
         if( id == R.id.addgame)
         {
-            Toast.makeText(this, "You have selected add game", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, CreateGame.class));
         }
 
         if( id == R.id.profile)
         {
-            Toast.makeText(this, "You have selected profile", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, EditProfile.class));
         }
 
         if( id == R.id.settings)
