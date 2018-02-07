@@ -28,30 +28,27 @@
             android:id="@+id/editTextEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/editTextPassword"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
+            android:layout_alignStart="@+id/textView8"
+            android:layout_below="@+id/textView8"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Username" />
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/editTextEmail"
-            android:layout_centerVertical="true"
+            android:layout_below="@+id/textView9"
+            android:layout_centerHorizontal="true"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Password" />
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/buttonSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextPassword"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="63dp"
+            android:layout_below="@+id/editTextEmail"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@+id/textView8"
             android:background="#8BC34A"
             android:text="Sign Up"
             android:textColor="#ffffff" />
@@ -60,10 +57,27 @@
             android:id="@+id/textViewSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/editTextPassword"
-            android:layout_below="@+id/buttonSignUp"
-            android:layout_marginTop="55dp"
+            android:layout_alignEnd="@+id/editTextEmail"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="33dp"
             android:text="Already have an account? Sign In" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/editTextPassword"
+            android:layout_centerVertical="true"
+            android:text="Password" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/editTextPassword"
+            android:layout_below="@+id/imageView"
+            android:layout_marginTop="19dp"
+            android:text="Email" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

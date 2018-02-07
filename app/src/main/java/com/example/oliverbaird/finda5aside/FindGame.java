@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -29,7 +31,6 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
     private ActionBarDrawerToggle menuToggle;
 
     private List<Game> myGames = new ArrayList<Game>();
-
 
 
     @Override
@@ -69,9 +70,14 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
             startActivity(new Intent(this, FindGame.class));
         }
 
+        if( id == R.id.addgame)
+        {
+            startActivity(new Intent(this, CreateGame.class));
+        }
+
         if( id == R.id.profile)
         {
-            Toast.makeText(this, "You have selected profile", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, EditProfile.class));
         }
 
         if( id == R.id.settings)
@@ -81,7 +87,10 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
 
         if( id == R.id.logOut)
         {
-            Toast.makeText(this, "You have selected to log out", Toast.LENGTH_SHORT).show();
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText(this, "You have successfully signed out", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, SignUpActivity.class));
+            finish();
         }
 
         return false;
