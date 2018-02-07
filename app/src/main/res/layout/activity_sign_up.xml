@@ -28,8 +28,8 @@
             android:id="@+id/editTextEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView8"
-            android:layout_below="@+id/textView8"
+            android:layout_below="@+id/textView9"
+            android:layout_centerHorizontal="true"
             android:ems="10"
             android:inputType="textPersonName" />
 
@@ -37,7 +37,7 @@
             android:id="@+id/editTextPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView9"
+            android:layout_below="@+id/textView8"
             android:layout_centerHorizontal="true"
             android:ems="10"
             android:inputType="textPersonName" />
@@ -46,9 +46,9 @@
             android:id="@+id/buttonSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextEmail"
-            android:layout_marginTop="50dp"
-            android:layout_toEndOf="@+id/textView8"
+            android:layout_below="@+id/editTextPassword"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="47dp"
             android:background="#8BC34A"
             android:text="Sign Up"
             android:textColor="#ffffff" />
