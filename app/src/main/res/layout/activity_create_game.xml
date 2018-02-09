@@ -21,6 +21,48 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
             android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textViewTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="Time" />
+
+        <Spinner
+            android:id="@+id/spinnerTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:entries="@array/times" />
+
+        <TextView
+            android:id="@+id/textViewLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="Location" />
+
+        <Spinner
+            android:id="@+id/spinnerLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:entries="@array/locations" />
+
+        <Button
+            android:id="@+id/buttonAddData"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="350dp"
+            android:background="#8BC34A"
+            android:textColor="#ffffff"
+            android:text="Add game"/>
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

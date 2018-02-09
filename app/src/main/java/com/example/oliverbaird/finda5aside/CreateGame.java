@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,6 +18,9 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
 
     private DrawerLayout menuDrawerLayout;
     private ActionBarDrawerToggle menuToggle;
+
+    Spinner spinnerTime;
+    Button buttonAddData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

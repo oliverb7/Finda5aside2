@@ -26,4 +26,29 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <!--Spinner-->
+
+    <array name="times">
+        <item>9am</item>
+        <item>10am</item>
+        <item>11am</item>
+        <item>12am</item>
+        <item>1pm</item>
+        <item>2pm</item>
+        <item>3pm</item>
+        <item>4pm</item>
+        <item>5pm</item>
+        <item>6pm</item>
+        <item>7pm</item>
+        <item>8pm</item>
+        <item>9pm</item>
+    </array>
+
+    <array name="locations">
+        <item>PlayBall Stormont</item>
+        <item>Olympia MUGA</item>
+        <item>Queens PEC</item>
+    </array>
+
 </resources>

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Text;
 
@@ -29,8 +30,8 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
 
     private DrawerLayout menuDrawerLayout;
     private ActionBarDrawerToggle menuToggle;
-
     private List<Game> myGames = new ArrayList<Game>();
+//    private FirebaseAuth mAuth;
 
 
     @Override
@@ -40,6 +41,7 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
 
         populateGamesList();
         populateListView();
+//        onStart();
 
         menuDrawerLayout=(DrawerLayout) findViewById(R.id.drawerMenu);
         menuToggle=new ActionBarDrawerToggle(FindGame.this, menuDrawerLayout,R.string.open,R.string.close);
@@ -49,6 +51,28 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
         NavigationView navigationView=(NavigationView)findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+//    public void onStart(){
+//        super.onStart();
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//
+//        if(currentUser == null){
+//
+//            startActivity(new Intent(this, SignUpActivity.class));
+//            Toast.makeText(this, "You have successfully signed out", Toast.LENGTH_SHORT).show();
+//            finish();
+//
+//        }
+//
+//    }
+//
+//    private void sendToSignUp(){
+//
+//        startActivity(new Intent(this, SignUpActivity.class));
+//        Toast.makeText(this, "You have successfully signed out", Toast.LENGTH_SHORT).show();
+//        finish();
+//
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -88,8 +112,8 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
         if( id == R.id.logOut)
         {
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(this, "You have successfully signed out", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, SignUpActivity.class));
+            Toast.makeText(this, "You have successfully signed out", Toast.LENGTH_SHORT).show();
             finish();
         }
 
