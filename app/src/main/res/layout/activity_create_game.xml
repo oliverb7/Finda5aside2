@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/textViewCreateGame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Create a game"
@@ -54,15 +54,48 @@
             android:layout_marginTop="10dp"
             android:entries="@array/locations" />
 
+        <TextView
+            android:id="@+id/textViewCost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="Cost" />
+
+        <Spinner
+            android:id="@+id/spinnerCost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:entries="@array/costs" />
+
+        <TextView
+            android:id="@+id/textViewSpacesNeeded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="Spaces available" />
+
+
+        <Spinner
+            android:id="@+id/spinnerPlaces"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:entries="@array/spaces" />
+
         <Button
             android:id="@+id/buttonAddData"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="140dp"
-            android:layout_marginTop="350dp"
             android:background="#8BC34A"
             android:textColor="#ffffff"
             android:text="Add game"/>
+
+
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

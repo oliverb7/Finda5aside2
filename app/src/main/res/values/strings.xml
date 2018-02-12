@@ -27,7 +27,7 @@
         completions."
     </string>
 
-    <!--Spinner-->
+    <!--Spinners-->
 
     <array name="times">
         <item>9am</item>
@@ -49,6 +49,27 @@
         <item>PlayBall Stormont</item>
         <item>Olympia MUGA</item>
         <item>Queens PEC</item>
+    </array>
+
+    <array name="costs">
+        <item>£1</item>
+        <item>£2</item>
+        <item>£3</item>
+        <item>£4</item>
+        <item>£5</item>
+        <item>£6</item>
+    </array>
+
+    <array name="spaces">
+        <item>"1"</item>
+        <item>"2"</item>
+        <item>"3"</item>
+        <item>"4"</item>
+        <item>"5"</item>
+        <item>"6"</item>
+        <item>"7"</item>
+        <item>"8"</item>
+        <item>"9"</item>
     </array>
 
 </resources>
