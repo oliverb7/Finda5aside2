@@ -21,14 +21,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="11dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="1dp"
         android:layout_toEndOf="@+id/item_icon"
         android:fontFamily="sans-serif"
         android:text="Oliver Baird"
         android:textSize="20sp" />
 
+
     <TextView
-        android:id="@+id/item_txtDescription"
+        android:id="@+id/textviewLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/item_icon"
@@ -36,13 +37,22 @@
         android:text="5aside football at Civil." />
 
     <TextView
-        android:id="@+id/item_txtTime"
+        android:id="@+id/textviewTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/item_txtDescription"
-        android:layout_alignBottom="@+id/item_txtDescription"
+        android:layout_alignBaseline="@+id/textviewLocation"
+        android:layout_alignBottom="@+id/textviewLocation"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="14dp"
-        android:text="Saturday at 10am" />
+        android:text="10am" />
+
+    <TextView
+        android:id="@+id/textviewCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_alignStart="@+id/item_txtUsername"
+        android:layout_below="@+id/item_txtUsername"
+        android:text="£1" />
 
 </RelativeLayout>
