@@ -27,6 +27,7 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
     Spinner spinnerLocation;
     Spinner spinnerCost;
     Spinner spinnerPlaces;
+
     Button buttonAddData;
 
     DatabaseReference databaseGames;
@@ -123,7 +124,7 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
         {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(this, "You have successfully signed out", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, SignUpActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         }
 

@@ -87,16 +87,27 @@
             android:layout_marginTop="10dp"
             android:entries="@array/spaces" />
 
-        <Button
-            android:id="@+id/buttonAddData"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:background="#8BC34A"
-            android:textColor="#ffffff"
-            android:text="Add game"/>
-
-
     </LinearLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="400dp">
+
+
+    <Button
+        android:id="@+id/buttonAddData"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:background="#8BC34A"
+        android:textColor="#ffffff"
+        android:layout_centerInParent="true"
+        android:text="Add game"/>
+
+
+    </RelativeLayout>
 
     <android.support.design.widget.NavigationView
         app:headerLayout="@layout/header"

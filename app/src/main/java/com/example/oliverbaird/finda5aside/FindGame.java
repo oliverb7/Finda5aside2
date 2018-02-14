@@ -34,13 +34,12 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
     private DrawerLayout menuDrawerLayout;
     private ActionBarDrawerToggle menuToggle;
 
+
     DatabaseReference databaseGames;
 
     ListView listviewGames;
 
     List<GameDB> gameDBList;
-//    private List<Game> myGames = new ArrayList<Game>();
-//    private FirebaseAuth mAuth;
 
 
     @Override
@@ -48,9 +47,6 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_game);
 
-//        populateGamesList();
-//        populateListView();
-//        onStart();
 
         menuDrawerLayout=(DrawerLayout) findViewById(R.id.drawerMenu);
         menuToggle=new ActionBarDrawerToggle(FindGame.this, menuDrawerLayout,R.string.open,R.string.close);
@@ -136,7 +132,7 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
         if( id == R.id.logOut)
         {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(this, SignUpActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
             Toast.makeText(this, "You have successfully signed out", Toast.LENGTH_SHORT).show();
             finish();
         }
@@ -144,61 +140,4 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
         return false;
     }
 
-//    private void populateGamesList() {
-//
-//        myGames.add(new Game("Oliver Baird", "Saturday 10am", R.drawable.oliver,"5aside at Civil"));
-//        myGames.add(new Game("Adam Ewart", "Friday 9pm", R.drawable.adam, "5aside at PEC"));
-//    }
-//
-//    private void populateListView() {
-//        ArrayAdapter<Game> adapterGames = new MyListAdapter();
-//        ListView list = (ListView) findViewById(R.id.gamesListView);
-//        list.setAdapter(adapterGames);
-//    }
-//
-//    private class MyListAdapter extends ArrayAdapter<Game> {
-//        public MyListAdapter() {
-//            super(FindGame.this, R.layout.game_view, myGames);
-//        }
-//
-//        @NonNull
-//        @Override
-//        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//
-//            //making sure there is a view to show
-//
-//            View itemView = convertView;
-//            if (itemView == null) {
-//                itemView = getLayoutInflater().inflate(R.layout.game_view, parent, false);
-//            }
-//
-//            //populating the UI design
-//
-//            //find the game to show
-//
-//            Game currentGame = myGames.get(position);
-//
-//            //fill the image
-//
-//            ImageView imageViewGame = (ImageView) itemView.findViewById(R.id.item_icon);
-//            imageViewGame.setImageResource(currentGame.getIconID());
-//
-//            //fill the username
-//
-//            TextView textViewGameUsername = (TextView) itemView.findViewById(R.id.item_txtUsername);
-//            textViewGameUsername.setText(currentGame.username());
-//
-//            //fill the time
-//
-//            TextView textViewGameTime = (TextView) itemView.findViewById(R.id.item_txtTime);
-//            textViewGameTime.setText(currentGame.time());
-//
-//            //fill the description
-//
-//            TextView textViewGameDescription = (TextView) itemView.findViewById(R.id.item_txtLocation);
-//            textViewGameDescription.setText(currentGame.getDescription());
-//
-//            return itemView;
-//        }
-//    }
 }

@@ -38,13 +38,31 @@ public class GamesList extends ArrayAdapter<GameDB> {
 
         TextView textviewLocation = (TextView) listViewItem.findViewById(R.id.textviewLocation);
         TextView textviewTime = (TextView) listViewItem.findViewById(R.id.textviewTime);
+        TextView textviewSpaces = (TextView) listViewItem.findViewById(R.id.textviewSpaces);
         TextView textviewCost = (TextView) listViewItem.findViewById(R.id.textviewCost);
+
+
+        TextView txtViewLocationtext = (TextView) listViewItem.findViewById(R.id.txtViewLocationtext);
+        TextView txtViewCosttext = (TextView) listViewItem.findViewById(R.id.txtViewCosttext);
+        TextView txtViewSpacestext = (TextView) listViewItem.findViewById(R.id.txtViewSpacestext);
+        TextView txtViewTimetext = (TextView) listViewItem.findViewById(R.id.txtViewTimetext);
+
 
         GameDB game = gameList.get(position);
 
         textviewLocation.setText(game.getGameLocation());
         textviewCost.setText(game.getGameCost());
         textviewTime.setText(game.getGameTime());
+        textviewSpaces.setText(game.getGameSpaces());
+
+        txtViewLocationtext.setText("Location:");
+        txtViewCosttext.setText("Cost:");
+        txtViewTimetext.setText("Time:");
+        txtViewSpacestext.setText("Spaces available:");
+
+
+
+
 
         return listViewItem;
 
