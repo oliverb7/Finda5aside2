@@ -2,18 +2,112 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawerMenu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/drawerMenu"
     tools:context="com.example.oliverbaird.finda5aside.EditProfile">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewAddPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingTop="20dp"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            tools:text="Tap on camera to add photo" />
+
+        <ImageButton
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/camera_icon" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editText2"
+            android:layout_alignStart="@+id/editText2"
+            android:layout_marginBottom="27dp"
+            android:text="Name"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewAge"
+            android:layout_alignStart="@+id/textViewAge"
+            android:layout_marginBottom="27dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textViewAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editTextAge"
+            android:layout_alignStart="@+id/editTextAge"
+            android:layout_marginBottom="27dp"
+            android:text="Age"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewLevel"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="27dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textViewLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/spinnerLevel"
+            android:layout_alignStart="@+id/editTextAge"
+            android:layout_marginBottom="30dp"
+            android:text="Skill Level"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerLevel"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="61dp"
+            android:layout_marginEnd="70dp"
+            android:entries="@array/levels" />
+    </RelativeLayout>
+
     <android.support.design.widget.NavigationView
-        app:headerLayout="@layout/header"
+        android:id="@+id/navigation_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/navigation_view"
-        app:menu="@menu/side_menu"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
         android:layout_gravity="start"
-        ></android.support.design.widget.NavigationView>
+        app:headerLayout="@layout/header"
+        app:menu="@menu/side_menu"></android.support.design.widget.NavigationView>
+
 
 </android.support.v4.widget.DrawerLayout>

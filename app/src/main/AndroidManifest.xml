@@ -16,7 +16,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".FindGame" />
-        <activity android:name=".Profile" />
         <activity android:name=".Settings" />
         <activity android:name=".SplashActivity">
             <intent-filter>
@@ -25,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Menu" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".CreateGame" />
         <activity android:name=".EditProfile"></activity>

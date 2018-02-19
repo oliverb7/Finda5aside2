@@ -26,7 +26,8 @@
             android:maxHeight="120dp"
             android:maxWidth="120dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/logologin" />
+            app:srcCompat="@drawable/logologin"
+            android:contentDescription="iconforSignUp" />
 
         <TextView
             android:id="@+id/textViewEmailText"
