@@ -25,6 +25,7 @@
             tools:text="Tap on camera to add photo" />
 
         <ImageButton
+            android:id="@+id/imageButtonCamera"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_gravity="center"
@@ -42,19 +43,18 @@
             android:id="@+id/textViewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/editText2"
-            android:layout_alignStart="@+id/editText2"
-            android:layout_marginBottom="27dp"
+            android:layout_above="@+id/editTextName"
+            android:layout_alignStart="@+id/editTextName"
             android:text="Name"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editTextName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/textViewAge"
             android:layout_alignStart="@+id/textViewAge"
-            android:layout_marginBottom="27dp"
+            android:layout_marginBottom="14dp"
             android:ems="10"
             android:inputType="textPersonName" />
 
@@ -64,7 +64,6 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/editTextAge"
             android:layout_alignStart="@+id/editTextAge"
-            android:layout_marginBottom="27dp"
             android:text="Age"
             android:textStyle="bold" />
 
@@ -74,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/textViewLevel"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="27dp"
+            android:layout_marginBottom="53dp"
             android:ems="10"
             android:inputType="textPersonName" />
 
@@ -84,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/spinnerLevel"
             android:layout_alignStart="@+id/editTextAge"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="53dp"
             android:text="Skill Level"
             android:textStyle="bold" />
 
@@ -92,11 +91,20 @@
             android:id="@+id/spinnerLevel"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_above="@+id/buttonSaveDetails"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="61dp"
+            android:layout_marginBottom="40dp"
             android:layout_marginEnd="70dp"
             android:entries="@array/levels" />
+
+        <Button
+            android:id="@+id/buttonSaveDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:text="Save" />
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerMenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.oliverbaird.finda5aside.GamesDetails">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewLocationPic"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/pec_pic" />
+
+        <TextView
+            android:id="@+id/textViewDetailsLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imageViewLocationPic"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="15dp"
+            android:text="PEC Queens"
+            android:textStyle="bold"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/textViewDetailsCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewDetailsLocation"
+            android:layout_below="@+id/textViewDetailsLocation"
+            android:layout_marginTop="10dp"
+            android:text="£5"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textViewDetailsDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewDetailsCost"
+            android:layout_below="@+id/textViewDetailsCost"
+            android:layout_marginTop="10dp"
+            android:text="21/02/2018"
+            android:textStyle="bold"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/textViewDetailsNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewDetailsDate"
+            android:layout_below="@+id/textViewDetailsDate"
+            android:layout_marginTop="10dp"
+            android:text="0792836273"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textViewDetailsSpaces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewDetailsNumber"
+            android:layout_below="@+id/textViewDetailsNumber"
+            android:layout_marginTop="10dp"
+            android:text="3 Spaces"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/buttonCall"
+            android:layout_alignBottom="@+id/buttonCall"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="4dp"
+            android:background="#8BC34A"
+            android:text="Location"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/buttonCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/imageViewLocationPic"
+            android:layout_marginBottom="34dp"
+            android:background="#8BC34A"
+            android:layout_marginStart="4dp"
+            android:text="Call"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/buttonText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/buttonCall"
+            android:layout_alignBottom="@+id/buttonCall"
+            android:layout_alignEnd="@+id/imageViewLocationPic"
+            android:background="#8BC34A"
+            android:layout_marginStart="8dp"
+            android:text="Text"
+            android:textColor="#ffffff" />
+
+
+        <Button
+            android:id="@+id/buttonBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/buttonText"
+            android:layout_alignBottom="@+id/buttonText"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:background="#8BC34A"
+            android:text="Book"
+            android:textColor="#ffffff" />
+
+
+    </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        app:headerLayout="@layout/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/navigation_view"
+        app:menu="@menu/side_menu"
+        android:layout_gravity="start">
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

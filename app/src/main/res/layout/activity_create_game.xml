@@ -7,10 +7,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.oliverbaird.finda5aside.CreateGame">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
 
         <TextView
             android:id="@+id/textViewCreateGame"
@@ -21,6 +23,23 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
             android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="Date" />
+
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:inputType="date" />
 
         <TextView
             android:id="@+id/textViewTime"
@@ -87,27 +106,38 @@
             android:layout_marginTop="10dp"
             android:entries="@array/spaces" />
 
+        <TextView
+            android:id="@+id/textViewPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="Phone Number" />
+
+        <EditText
+            android:id="@+id/editTextNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:inputType="phone" />
+
+        <Button
+            android:id="@+id/buttonAddData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:background="#8BC34A"
+            android:textColor="#ffffff"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Add game"/>
+
+
+
     </LinearLayout>
 
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="400dp">
-
-
-    <Button
-        android:id="@+id/buttonAddData"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:background="#8BC34A"
-        android:textColor="#ffffff"
-        android:layout_centerInParent="true"
-        android:text="Add game"/>
-
-
-    </RelativeLayout>
 
     <android.support.design.widget.NavigationView
         app:headerLayout="@layout/header"

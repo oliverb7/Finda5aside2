@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -55,6 +58,19 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
 
         gameDBList = new ArrayList<>();
 
+        listviewGames.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                GameDB game = gameDBList.get(i);
+
+                Intent intent = new Intent(getApplicationContext(), GamesDetails.class);
+
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     @Override
@@ -77,6 +93,8 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
 
                 GamesList adapter = new GamesList(FindGame.this, gameDBList);
                 listviewGames.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                Collections.reverse(gameDBList);
 
             }
 

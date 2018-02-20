@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 /**
@@ -39,12 +41,16 @@ public class GamesList extends ArrayAdapter<GameDB> {
         TextView textviewTime = (TextView) listViewItem.findViewById(R.id.textviewTime);
         TextView textviewSpaces = (TextView) listViewItem.findViewById(R.id.textviewSpaces);
         TextView textviewCost = (TextView) listViewItem.findViewById(R.id.textviewCost);
+        TextView textViewDate = (TextView) listViewItem.findViewById(R.id.textviewDate);
+
 
 
         TextView txtViewLocationtext = (TextView) listViewItem.findViewById(R.id.txtViewLocationtext);
         TextView txtViewCosttext = (TextView) listViewItem.findViewById(R.id.txtViewCosttext);
         TextView txtViewSpacestext = (TextView) listViewItem.findViewById(R.id.txtViewSpacestext);
         TextView txtViewTimetext = (TextView) listViewItem.findViewById(R.id.txtViewTimetext);
+        TextView txtViewDatetext = (TextView) listViewItem.findViewById(R.id.txtViewDatetext);
+
 
 
         GameDB game = gameList.get(position);
@@ -53,11 +59,13 @@ public class GamesList extends ArrayAdapter<GameDB> {
         textviewCost.setText(game.getGameCost());
         textviewTime.setText(game.getGameTime());
         textviewSpaces.setText(game.getGameSpaces());
+        textViewDate.setText(game.getGameDate());
 
         txtViewLocationtext.setText("Location:");
         txtViewCosttext.setText("Cost:");
         txtViewTimetext.setText("Time:");
         txtViewSpacestext.setText("Spaces available:");
+        txtViewDatetext.setText("Date:");
 
 
 

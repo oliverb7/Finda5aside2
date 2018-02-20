@@ -11,6 +11,8 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,6 +29,8 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
     Spinner spinnerLocation;
     Spinner spinnerCost;
     Spinner spinnerPlaces;
+    EditText editTextDate;
+    EditText editTextNumber;
 
     Button buttonAddData;
 
@@ -53,6 +57,8 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
         spinnerCost = (Spinner) findViewById(R.id.spinnerCost);
         spinnerPlaces = (Spinner) findViewById(R.id.spinnerPlaces);
         buttonAddData = (Button) findViewById(R.id.buttonAddData);
+        editTextDate = (EditText) findViewById(R.id.editTextDate);
+        editTextNumber = (EditText) findViewById(R.id.editTextNumber);
 
         buttonAddData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,12 +74,15 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
         String location = spinnerLocation.getSelectedItem().toString();
         String cost = spinnerCost.getSelectedItem().toString();
         String spaces = spinnerPlaces.getSelectedItem().toString();
+        String date = editTextDate.getText().toString();
+        String number = editTextNumber.getText().toString();
+
 
         if(!TextUtils.isEmpty(time)){
 
             String id = databaseGames.push().getKey();
 
-            GameDB game = new GameDB(id, time, location, cost, spaces);
+            GameDB game = new GameDB(id, time, location, cost, spaces, date, number);
 
             databaseGames.child(id).setValue(game);
 

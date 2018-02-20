@@ -11,17 +11,21 @@ public class GameDB {
     String gameLocation;
     String gameTime;
     String gameSpaces;
+    String gameDate;
+    String gameNumber;
 
     public GameDB(){
 
     }
 
-    public GameDB(String gameID,String gameCost, String gameLocation, String gameTime, String gameSpaces) {
+    public GameDB(String gameID,String gameCost, String gameLocation, String gameTime, String gameSpaces, String gameDate, String gameNumber) {
         this.gameID = gameID;
         this.gameCost = gameCost;
         this.gameLocation = gameLocation;
         this.gameTime = gameTime;
         this.gameSpaces = gameSpaces;
+        this.gameDate = gameDate;
+        this.gameNumber = gameNumber;
     }
 
     public String getGameID() {
@@ -43,4 +47,8 @@ public class GameDB {
     public String getGameSpaces() {
         return gameSpaces;
     }
+
+    public String getGameDate() {return gameDate;}
+
+    public String getGameNumber() {return gameNumber;}
 }

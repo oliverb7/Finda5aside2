@@ -26,7 +26,8 @@
         </activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".CreateGame" />
-        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".EditProfile" />
+        <activity android:name=".GamesDetails"></activity>
     </application>
 
 </manifest>
