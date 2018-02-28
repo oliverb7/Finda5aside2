@@ -67,10 +67,6 @@ public class GamesList extends ArrayAdapter<GameDB> {
         txtViewSpacestext.setText("Spaces available:");
         txtViewDatetext.setText("Date:");
 
-
-
-
-
         return listViewItem;
 
     }

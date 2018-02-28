@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +32,6 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
 
     private DrawerLayout menuDrawerLayout;
     private ActionBarDrawerToggle menuToggle;
-
 
     DatabaseReference databaseGames;
 
@@ -58,15 +60,28 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
 
         gameDBList = new ArrayList<>();
 
+//        final TextView textViewLocation = (TextView)findViewById(R.id.textviewLocation);
+
+
+
         listviewGames.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 GameDB game = gameDBList.get(i);
 
-                Intent intent = new Intent(getApplicationContext(), GamesDetails.class);
+                String location = game.getGameLocation();
+                String cost = game.getGameCost();
+                String spaces = game.getGameSpaces();
+                String date = game.getGameDate();
 
-                startActivity(intent);
+               Intent intent1 = new Intent(getApplicationContext(), GamesDetails.class);
+                intent1.putExtra("location", location);
+                intent1.putExtra("cost", cost);
+                intent1.putExtra("spaces", spaces);
+                intent1.putExtra("date", date);
+
+                startActivity(intent1);
 
             }
         });
@@ -95,6 +110,7 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
                 listviewGames.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 Collections.reverse(gameDBList);
+
 
             }
 

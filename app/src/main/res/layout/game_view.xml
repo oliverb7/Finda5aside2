@@ -45,10 +45,9 @@
         android:id="@+id/txtViewSpacestext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/txtViewCosttext"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="5dp"
+        android:layout_alignBaseline="@+id/textviewSpaces"
+        android:layout_alignBottom="@+id/textviewSpaces"
+        android:layout_alignStart="@+id/txtViewDatetext"
         android:text="TextView"
         android:textStyle="bold"
         tools:text="Places available:" />
@@ -61,6 +60,18 @@
         android:text="Date:"
         android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtViewSkill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textviewSkill"
+        android:layout_alignBottom="@+id/textviewSkill"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="5dp"
+        android:text="Skill Level:"
         android:textStyle="bold" />
 
 
@@ -112,6 +123,18 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/textviewSpaces"
         android:text="25/06/18"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="5dp"/>
+
+
+
+    <TextView
+        android:id="@+id/textviewSkill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textviewDate"
+        android:layout_below="@+id/textviewDate"
+        android:text="Beginner"
         android:layout_marginTop="2dp"
         android:layout_marginRight="5dp"/>
 

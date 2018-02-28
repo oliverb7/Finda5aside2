@@ -29,8 +29,10 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
     Spinner spinnerLocation;
     Spinner spinnerCost;
     Spinner spinnerPlaces;
+    Spinner spinnerSkill;
     EditText editTextDate;
     EditText editTextNumber;
+
 
     Button buttonAddData;
 
@@ -56,6 +58,7 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
         spinnerLocation = (Spinner) findViewById(R.id.spinnerLocation);
         spinnerCost = (Spinner) findViewById(R.id.spinnerCost);
         spinnerPlaces = (Spinner) findViewById(R.id.spinnerPlaces);
+        spinnerSkill = (Spinner) findViewById(R.id.spinnerSkill);
         buttonAddData = (Button) findViewById(R.id.buttonAddData);
         editTextDate = (EditText) findViewById(R.id.editTextDate);
         editTextNumber = (EditText) findViewById(R.id.editTextNumber);
@@ -76,13 +79,14 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
         String spaces = spinnerPlaces.getSelectedItem().toString();
         String date = editTextDate.getText().toString();
         String number = editTextNumber.getText().toString();
+        String skill = spinnerSkill.getSelectedItem().toString();
 
 
         if(!TextUtils.isEmpty(time)){
 
             String id = databaseGames.push().getKey();
 
-            GameDB game = new GameDB(id, time, location, cost, spaces, date, number);
+            GameDB game = new GameDB(id, time, location, cost, spaces, date, number, skill);
 
             databaseGames.child(id).setValue(game);
 

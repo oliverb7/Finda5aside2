@@ -72,11 +72,19 @@
         <item>"9"</item>
     </array>
 
+    <array name="skill">
+        <item>Beginner</item>
+        <item>Casual</item>
+        <item>Experienced</item>
+        <item>Professional</item>
+    </array>
+
     <array name="levels">
         <item>Beginner</item>
         <item>Casual</item>
         <item>Experienced</item>
         <item>Professional</item>
     </array>
+
 
 </resources>

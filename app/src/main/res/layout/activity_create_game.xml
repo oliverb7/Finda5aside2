@@ -107,6 +107,23 @@
             android:entries="@array/spaces" />
 
         <TextView
+            android:id="@+id/textViewSkillLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="Skill Level" />
+
+
+        <Spinner
+            android:id="@+id/spinnerSkill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:entries="@array/skill" />
+
+        <TextView
             android:id="@+id/textViewPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -123,6 +140,8 @@
             android:layout_marginLeft="10dp"
             android:inputType="phone" />
 
+
+
         <Button
             android:id="@+id/buttonAddData"
             android:layout_width="wrap_content"
@@ -130,7 +149,7 @@
             android:layout_marginStart="160dp"
             android:background="#8BC34A"
             android:textColor="#ffffff"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="19dp"
             android:layout_marginBottom="10dp"
             android:text="Add game"/>
 
