@@ -32,8 +32,7 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
     Spinner spinnerSkill;
     EditText editTextDate;
     EditText editTextNumber;
-
-
+    EditText editTextName;
     Button buttonAddData;
 
     DatabaseReference databaseGames;
@@ -55,6 +54,7 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
         databaseGames = FirebaseDatabase.getInstance().getReference("games");
 
         spinnerTime = (Spinner) findViewById(R.id.spinnerTime);
+        editTextName = (EditText) findViewById(R.id.editTextName);
         spinnerLocation = (Spinner) findViewById(R.id.spinnerLocation);
         spinnerCost = (Spinner) findViewById(R.id.spinnerCost);
         spinnerPlaces = (Spinner) findViewById(R.id.spinnerPlaces);
@@ -62,6 +62,7 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
         buttonAddData = (Button) findViewById(R.id.buttonAddData);
         editTextDate = (EditText) findViewById(R.id.editTextDate);
         editTextNumber = (EditText) findViewById(R.id.editTextNumber);
+
 
         buttonAddData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +75,7 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
     private void addGame(){
 
         String time = spinnerTime.getSelectedItem().toString();
+        String name = editTextName.getText().toString();
         String location = spinnerLocation.getSelectedItem().toString();
         String cost = spinnerCost.getSelectedItem().toString();
         String spaces = spinnerPlaces.getSelectedItem().toString();
@@ -86,11 +88,13 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
 
             String id = databaseGames.push().getKey();
 
-            GameDB game = new GameDB(id, time, location, cost, spaces, date, number, skill);
+            GameDB game = new GameDB(id, time, location, cost, spaces, date, number, skill, name);
 
             databaseGames.child(id).setValue(game);
 
             Toast.makeText(this,"Game has been added", Toast.LENGTH_SHORT).show();
+
+            startActivity(new Intent(this, FindGame.class));
 
         } else{
 

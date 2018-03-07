@@ -20,13 +20,23 @@
             app:srcCompat="@drawable/pec_pic" />
 
         <TextView
+            android:id="@+id/textViewDetailsName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewDetailsLocation"
+            android:layout_below="@+id/imageViewLocationPic"
+            android:text="James Kennedy"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/textViewDetailsLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/imageViewLocationPic"
             android:layout_marginStart="21dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="35dp"
             android:text="PEC Queens"
             android:textStyle="bold"
             android:textSize="20dp"/>
@@ -73,6 +83,17 @@
             android:layout_marginTop="10dp"
             android:text="3 Spaces"
             android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewDetailsSkill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewDetailsSpaces"
+            android:layout_below="@+id/textViewDetailsSpaces"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:text="Beginner"
             android:textStyle="bold" />
 
         <Button
@@ -130,6 +151,8 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/imageViewLocationPic"
             android:layout_toEndOf="@+id/textViewDetailsSpaces" />
+
+
 
 
     </RelativeLayout>

@@ -13,13 +13,14 @@ public class GameDB {
     String gameSpaces;
     String gameDate;
     String gameNumber;
-    String skillLevel;
+    String skill;
+    String name;
 
     public GameDB(){
 
     }
 
-    public GameDB(String gameID,String gameCost, String gameLocation, String gameTime, String gameSpaces, String gameDate, String gameNumber, String skillLevel) {
+    public GameDB(String gameID,String gameCost, String gameLocation, String gameTime, String gameSpaces, String gameDate, String gameNumber, String skill, String name) {
         this.gameID = gameID;
         this.gameCost = gameCost;
         this.gameLocation = gameLocation;
@@ -27,7 +28,8 @@ public class GameDB {
         this.gameSpaces = gameSpaces;
         this.gameDate = gameDate;
         this.gameNumber = gameNumber;
-        this.skillLevel = skillLevel;
+        this.skill = skill;
+        this.name = name;
     }
 
     public String getGameID() {
@@ -54,5 +56,7 @@ public class GameDB {
 
     public String getGameNumber() {return gameNumber;}
 
-    public String getSkillLevel() {return skillLevel;}
+    public String getSkill() {return skill;}
+
+    public String getName() {return name;}
 }

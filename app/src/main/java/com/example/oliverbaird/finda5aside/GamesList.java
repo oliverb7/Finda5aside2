@@ -41,7 +41,8 @@ public class GamesList extends ArrayAdapter<GameDB> {
         TextView textviewTime = (TextView) listViewItem.findViewById(R.id.textviewTime);
         TextView textviewSpaces = (TextView) listViewItem.findViewById(R.id.textviewSpaces);
         TextView textviewCost = (TextView) listViewItem.findViewById(R.id.textviewCost);
-        TextView textViewDate = (TextView) listViewItem.findViewById(R.id.textviewDate);
+        TextView textviewDate = (TextView) listViewItem.findViewById(R.id.textviewDate);
+        TextView textViewSkill = (TextView) listViewItem.findViewById(R.id.textviewSkill);
 
 
 
@@ -50,6 +51,7 @@ public class GamesList extends ArrayAdapter<GameDB> {
         TextView txtViewSpacestext = (TextView) listViewItem.findViewById(R.id.txtViewSpacestext);
         TextView txtViewTimetext = (TextView) listViewItem.findViewById(R.id.txtViewTimetext);
         TextView txtViewDatetext = (TextView) listViewItem.findViewById(R.id.txtViewDatetext);
+        TextView txtViewSkilltext = (TextView) listViewItem.findViewById(R.id.txtViewSkilltext);
 
 
 
@@ -59,13 +61,15 @@ public class GamesList extends ArrayAdapter<GameDB> {
         textviewCost.setText(game.getGameCost());
         textviewTime.setText(game.getGameTime());
         textviewSpaces.setText(game.getGameSpaces());
-        textViewDate.setText(game.getGameDate());
+        textviewDate.setText(game.getGameDate());
+        textViewSkill.setText(game.getSkill());
 
         txtViewLocationtext.setText("Location:");
         txtViewCosttext.setText("Cost:");
         txtViewTimetext.setText("Time:");
         txtViewSpacestext.setText("Spaces available:");
         txtViewDatetext.setText("Date:");
+        txtViewSkilltext.setText("Skill level:");
 
         return listViewItem;
 

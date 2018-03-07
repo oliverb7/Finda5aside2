@@ -74,12 +74,19 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
                 String cost = game.getGameCost();
                 String spaces = game.getGameSpaces();
                 String date = game.getGameDate();
+                String skill = game.getSkill();
+                String number = game.getGameNumber();
+                String name = game.getName();
+
 
                Intent intent1 = new Intent(getApplicationContext(), GamesDetails.class);
                 intent1.putExtra("location", location);
                 intent1.putExtra("cost", cost);
                 intent1.putExtra("spaces", spaces);
                 intent1.putExtra("date", date);
+                intent1.putExtra("skill", skill);
+                intent1.putExtra("number", number);
+                intent1.putExtra("name", name);
 
                 startActivity(intent1);
 
@@ -130,6 +137,8 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
 
         return super.onOptionsItemSelected(item);
     }
+
+    //adding functions for if a list item is selected
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
