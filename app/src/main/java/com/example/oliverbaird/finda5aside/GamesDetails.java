@@ -2,7 +2,6 @@ package com.example.oliverbaird.finda5aside;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -19,12 +18,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
-
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
 
 public class GamesDetails extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -34,8 +29,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
     Button buttonText;
     Button buttonBook;
     Button buttonLocation;
-    TextView textViewDetailsNumber;
     private static final int CALL_PERMISSION = 1;
+    private static final int TEXT_PERMISSION = 1;
 
 
     @Override
@@ -44,23 +39,22 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_games_details);
 
 
-        menuDrawerLayout = (DrawerLayout) findViewById(R.id.drawerMenu);
+        menuDrawerLayout = findViewById(R.id.drawerMenu);
         menuToggle = new ActionBarDrawerToggle(GamesDetails.this, menuDrawerLayout, R.string.open, R.string.close);
         menuDrawerLayout.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
-        final TextView textViewDetailsNumber = (TextView) findViewById(R.id.textViewDetailsNumber);
+        final TextView textViewDetailsNumber = findViewById(R.id.textViewDetailsNumber);
 
 
-        TextView textViewDetailsLocation = (TextView) findViewById(R.id.textViewDetailsLocation);
-        TextView textViewDetailsCost = (TextView) findViewById(R.id.textViewDetailsCost);
-        TextView textViewDetailsSpaces = (TextView) findViewById(R.id.textViewDetailsSpaces);
-        TextView textViewDetailsDate = (TextView) findViewById(R.id.textViewDetailsDate);
-        TextView textViewDetailsSkill = (TextView) findViewById(R.id.textViewDetailsSkill);
-//        TextView textViewDetailsNumber = (TextView) findViewById(R.id.textViewDetailsNumber);
-        TextView textViewDetailsName = (TextView) findViewById(R.id.textViewDetailsName);
+        TextView textViewDetailsLocation = findViewById(R.id.textViewDetailsLocation);
+        TextView textViewDetailsCost = findViewById(R.id.textViewDetailsCost);
+        TextView textViewDetailsSpaces = findViewById(R.id.textViewDetailsSpaces);
+        TextView textViewDetailsDate = findViewById(R.id.textViewDetailsDate);
+        TextView textViewDetailsSkill = findViewById(R.id.textViewDetailsSkill);
+        TextView textViewDetailsName = findViewById(R.id.textViewDetailsName);
 
 
         Bundle detailBundle = getIntent().getExtras();
@@ -85,14 +79,60 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             textViewDetailsName.setText(nameDetail);
         }
 
+        //click listener for the ability of a user to text about a game
+
         buttonText = findViewById(R.id.buttonText);
 
         buttonText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
-                Toast.makeText(GamesDetails.this, "Texting number", Toast.LENGTH_SHORT).show();
+                String phoneNumber = textViewDetailsNumber.getText().toString();
+
+                if (!TextUtils.isEmpty(phoneNumber)) {
+                    if (checkPermission(Manifest.permission.SEND_SMS)) {
+                        String dial = "smsto:" + phoneNumber;
+                        startActivity(new Intent(Intent.ACTION_SENDTO, Uri.parse(dial)));
+                    } else {
+                        Toast.makeText(GamesDetails.this, "Permission Text denied", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(GamesDetails.this, "Enter a phone number", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+        if (checkPermission(Manifest.permission.SEND_SMS)) {
+            buttonText.setEnabled(true);
+        } else {
+            buttonText.setEnabled(false);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, TEXT_PERMISSION);
+        }
+
+
+        //click listener for a user to find the location
+
+        buttonLocation = findViewById(R.id.buttonLocation);
+
+        buttonLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View V) {
+                Toast.makeText(GamesDetails.this, "Find the pitch", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //click listener for user to be able to book a pitch
+
+        buttonBook = findViewById(R.id.buttonBook);
+
+        buttonBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View V) {
+                Toast.makeText(GamesDetails.this, "Book a place", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //click listener which gives the user the ability call about a game
 
         buttonCall = findViewById(R.id.buttonCall);
 
@@ -114,13 +154,6 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
-
-        if (checkPermission(Manifest.permission.CALL_PHONE)) {
-            buttonCall.setEnabled(true);
-        } else {
-            buttonCall.setEnabled(false);
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, CALL_PERMISSION);
-        }
     }
 
 
@@ -144,6 +177,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
 
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         if(menuToggle.onOptionsItemSelected(item)){
@@ -153,7 +187,6 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
