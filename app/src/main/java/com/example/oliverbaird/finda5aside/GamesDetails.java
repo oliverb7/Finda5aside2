@@ -208,6 +208,12 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(this, EditProfile.class));
         }
 
+        if( id == R.id.mygames)
+        {
+            startActivity(new Intent(this, MyGames.class));
+        }
+
+
         if( id == R.id.settings)
         {
             Toast.makeText(this, "You have selected settings", Toast.LENGTH_SHORT).show();

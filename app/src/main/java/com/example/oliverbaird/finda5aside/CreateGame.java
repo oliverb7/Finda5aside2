@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,13 +36,17 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
     EditText editTextName;
     Button buttonAddData;
 
+    FirebaseAuth mAuth;
+
     DatabaseReference databaseGames;
+    DatabaseReference databaseGamesPrivate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_game);
 
+        mAuth = FirebaseAuth.getInstance();
 
         menuDrawerLayout=(DrawerLayout) findViewById(R.id.drawerMenu);
         menuToggle=new ActionBarDrawerToggle(CreateGame.this, menuDrawerLayout,R.string.open,R.string.close);
@@ -52,6 +57,7 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
         navigationView.setNavigationItemSelectedListener(this);
 
         databaseGames = FirebaseDatabase.getInstance().getReference("games");
+        databaseGamesPrivate = FirebaseDatabase.getInstance().getReference("gamesPersonal");
 
         spinnerTime = (Spinner) findViewById(R.id.spinnerTime);
         editTextName = (EditText) findViewById(R.id.editTextName);
@@ -84,19 +90,21 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
         String skill = spinnerSkill.getSelectedItem().toString();
 
 
-        if(!TextUtils.isEmpty(time)){
+        if(!TextUtils.isEmpty(time)) {
 
-            String id = databaseGames.push().getKey();
 
-            GameDB game = new GameDB(id, time, location, cost, spaces, date, number, skill, name);
+                String id = databaseGames.push().getKey();
+                String uid = mAuth.getCurrentUser().getUid();
+                GameDB game = new GameDB(id, time, location, cost, spaces, date, number, skill, name);
 
-            databaseGames.child(id).setValue(game);
+                databaseGames.child(id).setValue(game);
+                databaseGamesPrivate.child(uid).child(id).setValue(game);
 
-            Toast.makeText(this,"Game has been added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Game has been added", Toast.LENGTH_SHORT).show();
 
-            startActivity(new Intent(this, FindGame.class));
+                startActivity(new Intent(this, FindGame.class));
 
-        } else{
+        }else{
 
             Toast.makeText(this,"You must select a time", Toast.LENGTH_SHORT).show();
         }
@@ -130,6 +138,11 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
         if( id == R.id.profile)
         {
             startActivity(new Intent(this, EditProfile.class));
+        }
+
+        if( id == R.id.mygames)
+        {
+            startActivity(new Intent(this, MyGames.class));
         }
 
         if( id == R.id.settings)

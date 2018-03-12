@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,80 +20,56 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
-public class FindGame extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MyGames extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout menuDrawerLayout;
     private ActionBarDrawerToggle menuToggle;
 
-    DatabaseReference databaseGames;
-
-    ListView listviewGames;
-
-    List<GameDB> gameDBList;
-
+    DatabaseReference databaseGamesPrivate;
+    ListView listviewGamesPrivate;
+    List<GameDB> gameDBListPrivate;
     FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_game);
+        setContentView(R.layout.activity_my_games);
 
         mAuth = FirebaseAuth.getInstance();
 
-        menuDrawerLayout=(DrawerLayout) findViewById(R.id.drawerMenu);
-        menuToggle=new ActionBarDrawerToggle(FindGame.this, menuDrawerLayout,R.string.open,R.string.close);
+        String uid = mAuth.getCurrentUser().getUid();
+
+        menuDrawerLayout= findViewById(R.id.drawerMenu);
+        menuToggle=new ActionBarDrawerToggle(MyGames.this, menuDrawerLayout,R.string.open,R.string.close);
         menuDrawerLayout.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView=(NavigationView)findViewById(R.id.navigation_view);
+        NavigationView navigationView=findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //reading in public games
-        databaseGames = FirebaseDatabase.getInstance().getReference("games");
+        //reading in private games
+        databaseGamesPrivate = FirebaseDatabase.getInstance().getReference("gamesPersonal").child(uid);
 
-        listviewGames = (ListView) findViewById(R.id.listviewGames);
+        listviewGamesPrivate = findViewById(R.id.listviewGamesPrivate);
 
-        gameDBList = new ArrayList<>();
+        gameDBListPrivate = new ArrayList<>();
 
-//        final TextView textViewLocation = (TextView)findViewById(R.id.textviewLocation);
-
-
-        listviewGames.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listviewGamesPrivate.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                GameDB game = gameDBList.get(i);
+                GameDB game = gameDBListPrivate.get(i);
 
-                String location = game.getGameLocation();
-                String cost = game.getGameCost();
-                String spaces = game.getGameSpaces();
-                String date = game.getGameDate();
-                String skill = game.getSkill();
-                String number = game.getGameNumber();
-                String name = game.getName();
-
-
-               Intent intent1 = new Intent(getApplicationContext(), GamesDetails.class);
-                intent1.putExtra("location", location);
-                intent1.putExtra("cost", cost);
-                intent1.putExtra("spaces", spaces);
-                intent1.putExtra("date", date);
-                intent1.putExtra("skill", skill);
-                intent1.putExtra("number", number);
-                intent1.putExtra("name", name);
+                Intent intent1 = new Intent(getApplicationContext(), MyGamesDetails.class);
 
                 startActivity(intent1);
 
             }
         });
-
     }
 
     @Override
@@ -102,23 +77,23 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
 
         super.onStart();
 
-        databaseGames.addValueEventListener(new ValueEventListener() {
+        databaseGamesPrivate.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                gameDBList.clear();
+                gameDBListPrivate.clear();
 
                 for(DataSnapshot gameSnapshot: dataSnapshot.getChildren()){
                     GameDB game = gameSnapshot.getValue(GameDB.class);
 
-                    gameDBList.add(game);
+                    gameDBListPrivate.add(game);
                 }
 
-                GamesList adapter = new GamesList(FindGame.this, gameDBList);
-                listviewGames.setAdapter(adapter);
+                GamesList adapter = new GamesList(MyGames.this, gameDBListPrivate);
+                listviewGamesPrivate.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
-                Collections.reverse(gameDBList);
+                Collections.reverse(gameDBListPrivate);
 
 
             }
@@ -139,8 +114,6 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
 
         return super.onOptionsItemSelected(item);
     }
-
-    //adding functions for if a list item is selected
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
@@ -175,12 +148,11 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
         if( id == R.id.logOut)
         {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(this, MainActivity.class));
             Toast.makeText(this, "You have successfully signed out", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         }
 
         return false;
     }
-
 }
