@@ -80,6 +80,8 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
 
     private void addGame(){
 
+
+
         String time = spinnerTime.getSelectedItem().toString();
         String name = editTextName.getText().toString();
         String location = spinnerLocation.getSelectedItem().toString();

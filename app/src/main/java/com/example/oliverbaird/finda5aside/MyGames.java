@@ -64,7 +64,19 @@ public class MyGames extends AppCompatActivity implements NavigationView.OnNavig
 
                 GameDB game = gameDBListPrivate.get(i);
 
+                String location = game.getGameLocation();
+                String spaces = game.getGameSpaces();
+                String date = game.getGameDate();
+                String time = game.getGameTime();
+                String id = game.getGameID();
+
                 Intent intent1 = new Intent(getApplicationContext(), MyGamesDetails.class);
+
+                intent1.putExtra("location", location);
+                intent1.putExtra("spaces", spaces);
+                intent1.putExtra("date", date);
+                intent1.putExtra("time", time);
+                intent1.putExtra("id", id);
 
                 startActivity(intent1);
 

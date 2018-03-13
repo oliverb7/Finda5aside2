@@ -152,7 +152,16 @@
             android:layout_below="@+id/imageViewLocationPic"
             android:layout_toEndOf="@+id/textViewDetailsSpaces" />
 
-
+        <TextView
+            android:id="@+id/textViewDetailsTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewDetailsSkill"
+            android:layout_below="@+id/textViewDetailsSkill"
+            android:layout_marginTop="12dp"
+            android:text="6pm"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

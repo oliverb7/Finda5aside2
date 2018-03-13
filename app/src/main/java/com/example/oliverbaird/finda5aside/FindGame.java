@@ -79,9 +79,10 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
                 String skill = game.getSkill();
                 String number = game.getGameNumber();
                 String name = game.getName();
+                String time =  game.getGameTime();
+                String id = game.getGameID();
 
-
-               Intent intent1 = new Intent(getApplicationContext(), GamesDetails.class);
+                Intent intent1 = new Intent(getApplicationContext(), GamesDetails.class);
                 intent1.putExtra("location", location);
                 intent1.putExtra("cost", cost);
                 intent1.putExtra("spaces", spaces);
@@ -89,6 +90,9 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
                 intent1.putExtra("skill", skill);
                 intent1.putExtra("number", number);
                 intent1.putExtra("name", name);
+                intent1.putExtra("time", time);
+                intent1.putExtra("id", id);
+
 
                 startActivity(intent1);
 

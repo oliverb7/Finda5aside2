@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +30,29 @@ public class MyGamesDetails extends AppCompatActivity implements NavigationView.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView=findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        TextView textViewMyGamesDetailsLocation = findViewById(R.id.textViewMyGamesDetailsLocation);
+        TextView textViewMyGamesDetailsSpaces = findViewById(R.id.textViewMyGamesDetailsSpaces);
+        TextView textViewMyGamesDetailsDate = findViewById(R.id.textViewMyGamesDetailsDate);
+        TextView textViewMyGamesDetailsTime = findViewById(R.id.textViewMyGamesDetailsTime);
+
+
+        Bundle detailBundle = getIntent().getExtras();
+
+        if (detailBundle != null)
+
+        {
+            String locationDetail = detailBundle.getString("location");
+            String spacesDetail = detailBundle.getString("spaces");
+            String dateDetail = detailBundle.getString("date");
+            String timeDetail = detailBundle.getString("time");
+
+            textViewMyGamesDetailsLocation.setText(locationDetail);
+            textViewMyGamesDetailsSpaces.setText(spacesDetail);
+            textViewMyGamesDetailsDate.setText(dateDetail);
+            textViewMyGamesDetailsTime.setText(timeDetail);
+        }
     }
 
     @Override

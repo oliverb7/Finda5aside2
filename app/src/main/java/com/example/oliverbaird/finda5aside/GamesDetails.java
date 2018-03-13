@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class GamesDetails extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +33,11 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
     Button buttonLocation;
     private static final int CALL_PERMISSION = 1;
     private static final int TEXT_PERMISSION = 1;
+
+    //testing
+    DatabaseReference databaseGames;
+    DatabaseReference databaseGamesPrivate;
+    FirebaseAuth mAuth;
 
 
     @Override
@@ -51,13 +58,20 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
         TextView textViewDetailsLocation = findViewById(R.id.textViewDetailsLocation);
         TextView textViewDetailsCost = findViewById(R.id.textViewDetailsCost);
-        TextView textViewDetailsSpaces = findViewById(R.id.textViewDetailsSpaces);
+        final TextView textViewDetailsSpaces = findViewById(R.id.textViewDetailsSpaces);
         TextView textViewDetailsDate = findViewById(R.id.textViewDetailsDate);
         TextView textViewDetailsSkill = findViewById(R.id.textViewDetailsSkill);
         TextView textViewDetailsName = findViewById(R.id.textViewDetailsName);
+        TextView textViewDetailsTime = findViewById(R.id.textViewDetailsTime);
+
+        //testing
+        mAuth = FirebaseAuth.getInstance();
+        final String uid = mAuth.getCurrentUser().getUid();
+        databaseGamesPrivate = FirebaseDatabase.getInstance().getReference("gamesPersonal").child(uid);
+        databaseGames = FirebaseDatabase.getInstance().getReference("games");
 
 
-        Bundle detailBundle = getIntent().getExtras();
+        final Bundle detailBundle = getIntent().getExtras();
 
         if (detailBundle != null)
 
@@ -69,6 +83,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             String skillDetail = detailBundle.getString("skill");
             String numberDetail = detailBundle.getString("number");
             String nameDetail = detailBundle.getString("name");
+            String timeDetail = detailBundle.getString("time");
+
 
             textViewDetailsLocation.setText(locationDetail);
             textViewDetailsCost.setText(costDetail);
@@ -77,6 +93,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             textViewDetailsSkill.setText(skillDetail);
             textViewDetailsNumber.setText(numberDetail);
             textViewDetailsName.setText(nameDetail);
+            textViewDetailsTime.setText(timeDetail);
+
         }
 
         //click listener for the ability of a user to text about a game
@@ -120,7 +138,6 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
         //click listener for user to be able to book a pitch
 
         buttonBook = findViewById(R.id.buttonBook);
@@ -128,7 +145,23 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         buttonBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
-                Toast.makeText(GamesDetails.this, "Book a place", Toast.LENGTH_SHORT).show();
+
+                String spaces2 = detailBundle.getString("spaces");
+                int spacesInt = Integer.parseInt(spaces2);
+
+                if(spacesInt <= 9) {
+
+                    spacesInt--;
+                    Toast.makeText(GamesDetails.this, "You have successfully booked a place" + spacesInt, Toast.LENGTH_SHORT).show();
+                    String spacesRemaining = String.valueOf(spacesInt);
+                    textViewDetailsSpaces.setText(spacesRemaining);
+                    String id = detailBundle.getString("id");
+                    databaseGames.child(id).child("gameSpaces").setValue(spacesRemaining);
+                    databaseGamesPrivate.child(id).child("gameSpaces").setValue(spacesRemaining);
+
+                } else if (spacesInt == 0){
+                    Toast.makeText(GamesDetails.this, "There are no spaces left for this game", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
