@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -72,10 +73,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
-                    Intent intent = new Intent(SignUpActivity.this, FindGame.class);
-                    //clear all activities at the top of the stack
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+                    sendEmailVerification();
 
                 } else {
 
@@ -89,6 +87,28 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 }
             }
         });
+    }
+
+    private void sendEmailVerification(){
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        //if user is not equal to null send the user a verification email
+        if (firebaseUser!=null){
+            firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    //if the task is successful display toast, sign the user out () and start the login activity
+                    if (task.isSuccessful()){
+                        Toast.makeText(SignUpActivity.this, "A verification email has been sent", Toast.LENGTH_SHORT).show();
+                        mAuth.signOut();
+                        finish();
+                        startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                    } else {
+                        Toast.makeText(SignUpActivity.this, "An error has occurred, try again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
     }
 
     @Override

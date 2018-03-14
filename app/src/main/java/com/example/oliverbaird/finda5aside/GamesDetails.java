@@ -3,6 +3,7 @@ package com.example.oliverbaird.finda5aside;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -33,6 +34,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
     Button buttonLocation;
     private static final int CALL_PERMISSION = 1;
     private static final int TEXT_PERMISSION = 1;
+    private long mLastClickTime = 0;
 
     //testing
     DatabaseReference databaseGames;
@@ -53,8 +55,6 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
-        final TextView textViewDetailsNumber = findViewById(R.id.textViewDetailsNumber);
-
 
         TextView textViewDetailsLocation = findViewById(R.id.textViewDetailsLocation);
         TextView textViewDetailsCost = findViewById(R.id.textViewDetailsCost);
@@ -63,14 +63,26 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         TextView textViewDetailsSkill = findViewById(R.id.textViewDetailsSkill);
         TextView textViewDetailsName = findViewById(R.id.textViewDetailsName);
         TextView textViewDetailsTime = findViewById(R.id.textViewDetailsTime);
+        final TextView textViewDetailsNumber = findViewById(R.id.textViewDetailsNumber);
 
-        //testing
+        //ensuring that the booking button is not clicked more than once
+        findViewById(R.id.buttonBook).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // mis-clicking prevention, using threshold of 1000 ms
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
         final String uid = mAuth.getCurrentUser().getUid();
         databaseGamesPrivate = FirebaseDatabase.getInstance().getReference("gamesPersonal").child(uid);
         databaseGames = FirebaseDatabase.getInstance().getReference("games");
 
-
+        //Bundle used for passing data from previous activity
         final Bundle detailBundle = getIntent().getExtras();
 
         if (detailBundle != null)
@@ -104,6 +116,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         buttonText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
+
                 String phoneNumber = textViewDetailsNumber.getText().toString();
 
                 if (!TextUtils.isEmpty(phoneNumber)) {
@@ -158,6 +171,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
                     String id = detailBundle.getString("id");
                     databaseGames.child(id).child("gameSpaces").setValue(spacesRemaining);
                     databaseGamesPrivate.child(id).child("gameSpaces").setValue(spacesRemaining);
+                    buttonBook.setEnabled(false);
 
                 } else if (spacesInt == 0){
 
@@ -208,8 +222,6 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
         }
     }
-
-
 
 
     @Override

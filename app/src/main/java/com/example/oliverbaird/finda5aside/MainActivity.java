@@ -99,10 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onComplete(@NonNull Task<AuthResult> task) {
                 //if the login is successful move to the next activity
                 if(task.isSuccessful()){
-                        Intent intent = new Intent(MainActivity.this, FindGame.class);
-                        //clear all activities at the top of the stack
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
+                        checkEmailVerification();
                 } else{
 
                     Toast.makeText(MainActivity.this,"Login failed. Attempts remaining:" + counter, Toast.LENGTH_LONG).show();
@@ -113,6 +110,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
+    }
+
+    private void checkEmailVerification(){
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        Boolean emailFlag = firebaseUser.isEmailVerified();
+
+        if(emailFlag){
+            startActivity(new Intent(MainActivity.this, FindGame.class));
+        } else{
+            Toast.makeText(MainActivity.this, "You must verify your email", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+        }
     }
 
     @Override
