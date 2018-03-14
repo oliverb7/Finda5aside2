@@ -34,7 +34,8 @@
         <activity android:name=".EditProfile" />
         <activity android:name=".GamesDetails" />
         <activity android:name=".MyGames" />
-        <activity android:name=".MyGamesDetails"></activity>
+        <activity android:name=".MyGamesDetails" />
+        <activity android:name=".ForgotPassword"></activity>
     </application>
 
 </manifest>

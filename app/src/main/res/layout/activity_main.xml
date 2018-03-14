@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/textViewSignUp"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="43dp"
+        android:layout_marginBottom="30dp"
         android:background="#8BC34A"
         android:text="Sign In"
         android:textColor="#ffffff" />
@@ -87,7 +87,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="70dp"
         android:text="Don't have an account? Sign up." />
+
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="Forgot password?" />
 
 </RelativeLayout>

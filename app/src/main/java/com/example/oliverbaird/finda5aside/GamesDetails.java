@@ -149,10 +149,10 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
                 String spaces2 = detailBundle.getString("spaces");
                 int spacesInt = Integer.parseInt(spaces2);
 
-                if(spacesInt <= 9) {
+                if(spacesInt >= 1) {
 
                     spacesInt--;
-                    Toast.makeText(GamesDetails.this, "You have successfully booked a place" + spacesInt, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GamesDetails.this, "You have successfully booked a place", Toast.LENGTH_SHORT).show();
                     String spacesRemaining = String.valueOf(spacesInt);
                     textViewDetailsSpaces.setText(spacesRemaining);
                     String id = detailBundle.getString("id");
@@ -160,6 +160,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
                     databaseGamesPrivate.child(id).child("gameSpaces").setValue(spacesRemaining);
 
                 } else if (spacesInt == 0){
+
                     Toast.makeText(GamesDetails.this, "There are no spaces left for this game", Toast.LENGTH_SHORT).show();
                 }
             }
