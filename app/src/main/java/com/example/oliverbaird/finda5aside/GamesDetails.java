@@ -7,6 +7,8 @@ import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -36,6 +38,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
     private static final int TEXT_PERMISSION = 1;
     private long mLastClickTime = 0;
 
+    private int notificationId;
+
     //testing
     DatabaseReference databaseGames;
     DatabaseReference databaseGamesPrivate;
@@ -56,13 +60,13 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TextView textViewDetailsLocation = findViewById(R.id.textViewDetailsLocation);
+        final TextView textViewDetailsLocation = findViewById(R.id.textViewDetailsLocation);
         TextView textViewDetailsCost = findViewById(R.id.textViewDetailsCost);
         final TextView textViewDetailsSpaces = findViewById(R.id.textViewDetailsSpaces);
-        TextView textViewDetailsDate = findViewById(R.id.textViewDetailsDate);
+        final TextView textViewDetailsDate = findViewById(R.id.textViewDetailsDate);
         TextView textViewDetailsSkill = findViewById(R.id.textViewDetailsSkill);
         TextView textViewDetailsName = findViewById(R.id.textViewDetailsName);
-        TextView textViewDetailsTime = findViewById(R.id.textViewDetailsTime);
+        final TextView textViewDetailsTime = findViewById(R.id.textViewDetailsTime);
         final TextView textViewDetailsNumber = findViewById(R.id.textViewDetailsNumber);
 
         //ensuring that the booking button is not clicked more than once
@@ -172,6 +176,21 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
                     databaseGames.child(id).child("gameSpaces").setValue(spacesRemaining);
                     databaseGamesPrivate.child(id).child("gameSpaces").setValue(spacesRemaining);
                     buttonBook.setEnabled(false);
+
+
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(GamesDetails.this)
+                            .setSmallIcon(R.drawable.logologin)
+                            .setContentTitle("FA5 Booking")
+                            .setStyle(new NotificationCompat.BigTextStyle()
+                                    .bigText("Remember you have a game at " + detailBundle.getString("location" ) + " at " + detailBundle.getString("time") + " on " + detailBundle.getString("date")))
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(GamesDetails.this);
+
+                    // notificationId is a unique int for each notification that you must define
+                    notificationManager.notify(notificationId, mBuilder.build());
+
+
 
                 } else if (spacesInt == 0){
 
