@@ -1,5 +1,6 @@
 package com.example.oliverbaird.finda5aside;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -151,7 +153,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         buttonLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
-                Toast.makeText(GamesDetails.this, "Find the pitch", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(GamesDetails.this, Location.class));
             }
         });
 
@@ -177,10 +179,20 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
                     databaseGamesPrivate.child(id).child("gameSpaces").setValue(spacesRemaining);
                     buttonBook.setEnabled(false);
 
+                    String text = detailBundle.getString("timeDetail");
+                    String phoneNo = detailBundle.getString("numberDetail");
+
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage("phoneNo" + phoneNo , null, "text" + text, null, null);
+
+                    //creation of the notification for the user once they have booked into a game
 
                     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(GamesDetails.this)
                             .setSmallIcon(R.drawable.logologin)
                             .setContentTitle("FA5 Booking")
+
+                            //setting a style of a lot of text
+
                             .setStyle(new NotificationCompat.BigTextStyle()
                                     .bigText("Remember you have a game at " + detailBundle.getString("location" ) + " at " + detailBundle.getString("time") + " on " + detailBundle.getString("date")))
                             .setPriority(NotificationCompat.PRIORITY_DEFAULT);
@@ -189,7 +201,6 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
                     // notificationId is a unique int for each notification that you must define
                     notificationManager.notify(notificationId, mBuilder.build());
-
 
 
                 } else if (spacesInt == 0){
@@ -222,6 +233,12 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             }
         });
     }
+
+
+
+
+
+
 
 
     private boolean checkPermission(String permission) {
