@@ -27,6 +27,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.List;
+
 
 public class GamesDetails extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -153,7 +155,11 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         buttonLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
-                startActivity(new Intent(GamesDetails.this, Location.class));
+                Intent intent2 = new Intent(getApplicationContext(), Location.class);
+                String location = detailBundle.getString("location");
+                intent2.putExtra("location", location);
+                startActivity(intent2);
+//                startActivity(new Intent(GamesDetails.this, Location.class));
             }
         });
 
@@ -232,6 +238,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
+
+
     }
 
 
