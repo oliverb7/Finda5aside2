@@ -49,6 +49,14 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
     DatabaseReference databaseGamesPrivate;
     FirebaseAuth mAuth;
 
+    String numberDetail;
+    String textDetail;
+
+    //DECLARING
+
+    private TextView textViewDetailsLocation,textViewDetailsCost, textViewDetailsSpaces, textViewDetailsDate,
+            textViewDetailsSkill,textViewDetailsName,textViewDetailsTime, textViewDetailsNumber;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +72,16 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        final TextView textViewDetailsLocation = findViewById(R.id.textViewDetailsLocation);
-        TextView textViewDetailsCost = findViewById(R.id.textViewDetailsCost);
-        final TextView textViewDetailsSpaces = findViewById(R.id.textViewDetailsSpaces);
-        final TextView textViewDetailsDate = findViewById(R.id.textViewDetailsDate);
-        TextView textViewDetailsSkill = findViewById(R.id.textViewDetailsSkill);
-        TextView textViewDetailsName = findViewById(R.id.textViewDetailsName);
-        final TextView textViewDetailsTime = findViewById(R.id.textViewDetailsTime);
-        final TextView textViewDetailsNumber = findViewById(R.id.textViewDetailsNumber);
+        //INITIALISING
+
+        textViewDetailsLocation = findViewById(R.id.textViewDetailsLocation);
+        textViewDetailsCost = findViewById(R.id.textViewDetailsCost);
+        textViewDetailsSpaces = findViewById(R.id.textViewDetailsSpaces);
+        textViewDetailsDate = findViewById(R.id.textViewDetailsDate);
+        textViewDetailsSkill = findViewById(R.id.textViewDetailsSkill);
+        textViewDetailsName = findViewById(R.id.textViewDetailsName);
+        textViewDetailsTime = findViewById(R.id.textViewDetailsTime);
+        textViewDetailsNumber = findViewById(R.id.textViewDetailsNumber);
 
         //ensuring that the booking button is not clicked more than once
         findViewById(R.id.buttonBook).setOnClickListener(new View.OnClickListener() {
@@ -101,9 +111,10 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             String spacesDetail = detailBundle.getString("spaces");
             String dateDetail = detailBundle.getString("date");
             String skillDetail = detailBundle.getString("skill");
-            String numberDetail = detailBundle.getString("number");
+            numberDetail = detailBundle.getString("number");
             String nameDetail = detailBundle.getString("name");
             String timeDetail = detailBundle.getString("time");
+            textDetail = "hi you location is" + detailBundle.getString("location" ) + detailBundle.getString("date");
 
 
             textViewDetailsLocation.setText(locationDetail);
@@ -185,11 +196,11 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
                     databaseGamesPrivate.child(id).child("gameSpaces").setValue(spacesRemaining);
                     buttonBook.setEnabled(false);
 
-                    String text = detailBundle.getString("timeDetail");
-                    String phoneNo = detailBundle.getString("numberDetail");
+//
 
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage("phoneNo" + phoneNo , null, "text" + text, null, null);
+//                    Toast.makeText(GamesDetails.this, "You" + numberDetail, Toast.LENGTH_SHORT).show();
+                    smsManager.sendTextMessage(numberDetail , null, textDetail, null, null);
 
                     //creation of the notification for the user once they have booked into a game
 

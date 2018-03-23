@@ -1,63 +1,4 @@
 package com.example.oliverbaird.finda5aside;
-//
-//
-//import android.os.Bundle;
-//import android.support.v7.app.AppCompatActivity;
-//import android.widget.Toast;
-//
-//import com.google.android.gms.maps.CameraUpdateFactory;
-//import com.google.android.gms.maps.GoogleMap;
-//import com.google.android.gms.maps.OnMapReadyCallback;
-//import com.google.android.gms.maps.SupportMapFragment;
-//import com.google.android.gms.maps.model.LatLng;
-//import com.google.android.gms.maps.model.MarkerOptions;
-//
-///**
-// * An activity that displays a Google map with a marker (pin) to indicate a particular location.
-// */
-//public class Location extends AppCompatActivity
-//        implements OnMapReadyCallback {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        // Retrieve the content view that renders the map.
-//        setContentView(R.layout.activity_location);
-//        // Get the SupportMapFragment and request notification
-//        // when the map is ready to be used.
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
-//
-//        Bundle detailBundleMaps = getIntent().getExtras();
-//        String mapLocation = detailBundleMaps.getString("location");
-//        Toast.makeText(Location.this, "Here is " + mapLocation, Toast.LENGTH_SHORT).show();
-//    }
-//
-//    /**
-//     * Manipulates the map when it's available.
-//     * The API invokes this callback when the map is ready to be used.
-//     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-//     * we just add a marker near Sydney, Australia.
-//     * If Google Play services is not installed on the device, the user receives a prompt to install
-//     * Play services inside the SupportMapFragment. The API invokes this method after the user has
-//     * installed Google Play services and returned to the app.
-//     */
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//
-//
-//            // Add a marker in Sydney, Australia,
-//            // and move the map's camera to the same location.
-//            LatLng playBall = new LatLng(54.5957798, -5.8247721);
-//            googleMap.addMarker(new MarkerOptions().position(playBall)
-//                    .title("PlayBall Stormont"));
-//            googleMap.moveCamera(CameraUpdateFactory.newLatLng(playBall));
-//
-//
-//
-//    }
-//}
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -71,18 +12,22 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.nio.charset.MalformedInputException;
-
 public class Location extends FragmentActivity implements
         OnMapReadyCallback {
 
-    private static final LatLng PLAYBALL = new LatLng(54.5957798, -5.8247721);
-    private static final LatLng PEC = new LatLng(54.5808641,-5.9318286);
-    private static final LatLng OLYMPIA = new LatLng(54.5854456,-5.9619947);
+    private static final LatLng PLAYBALL = new LatLng(54.5968815,-5.8343839);
+    private static final LatLng PEC = new LatLng(54.5808641, -5.9318286);
+    private static final LatLng OLYMPIA = new LatLng(54.5854456, -5.9619947);
+    private static final LatLng HANWOOD = new LatLng(54.5898985,-5.827632);
+    private static final LatLng EDDIES = new LatLng(54.6389856,-5.6762917);
+    private static final LatLng LAGAN = new LatLng(54.5060055,-6.0532443);
 
     private Marker mPlayball;
     private Marker mPec;
     private Marker mOlympia;
+    private Marker mHanwood;
+    private Marker mEddies;
+    private Marker mLagan;
 
     private GoogleMap mMap;
 
@@ -96,47 +41,107 @@ public class Location extends FragmentActivity implements
         mapFragment.getMapAsync(this);
     }
 
-    /** Called when the map is ready. */
     @Override
     public void onMapReady(GoogleMap map) {
 
-        Bundle detailBundleMaps = getIntent().getExtras();
-        String mapLocation = detailBundleMaps.getString("location");
-//        Toast.makeText(Location.this, "Here is " + mapLocation, Toast.LENGTH_SHORT).show();
+        final Bundle detailBundleMaps = getIntent().getExtras();
+
+        if (detailBundleMaps != null) {
+            String mapLocation = detailBundleMaps.getString("location");
+            Toast.makeText(Location.this, "Here is " + mapLocation, Toast.LENGTH_SHORT).show();
 
             mMap = map;
+            mMap.clear();
 
-            // Add some markers to the map, and add a data object to each marker.
-            mPlayball = mMap.addMarker(new MarkerOptions()
-                    .position(PLAYBALL)
-                    .title("Playball"));
-
-            mPlayball.setTag(0);
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(PLAYBALL, 10));
+            if (mapLocation.equals("PlayBall Stormont")) {
 
 
-            mPec = mMap.addMarker(new MarkerOptions()
-                    .position(PEC)
-                    .title("PEC"));
+                // Add some markers to the map, and add a data object to each marker.
+                mPlayball = mMap.addMarker(new MarkerOptions()
+                        .position(PLAYBALL)
+                        .title("Playball Stormont"));
+                        mPlayball.showInfoWindow();
 
-            mPec.setTag(0);
-            map.moveCamera(CameraUpdateFactory.newLatLng(PEC));
+                mPlayball.setTag(0);
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(PLAYBALL, 15));
+
+            } else
+
+            if (mapLocation.equals("Queens PEC")) {
 
 
-            mOlympia = mMap.addMarker(new MarkerOptions()
-                    .position(OLYMPIA)
-                    .title("Olympia"));
+                mPec = mMap.addMarker(new MarkerOptions()
+                        .position(PEC)
+                        .title("PEC Queens"));
+                        mPec.showInfoWindow();
+
+                mPec.setTag(0);
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(PEC, 15));
+
+            } else
+
+            if (mapLocation.equals("Olympia MUGA")) {
 
 
-            mOlympia.setTag(0);
-            map.moveCamera(CameraUpdateFactory.newLatLng(OLYMPIA));
+                mOlympia = mMap.addMarker(new MarkerOptions()
+                        .position(OLYMPIA)
+                        .title("Olympia MUGA"));
+                mOlympia.showInfoWindow();
 
-        if (mapLocation == "PlayBall Stormont"){
-            mPlayball.showInfoWindow();
-        }
+
+                mOlympia.setTag(0);
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(OLYMPIA, 15));
+
+            }
+
+            if (mapLocation.equals("Hanwood Centre")) {
+
+
+                mHanwood = mMap.addMarker(new MarkerOptions()
+                        .position(HANWOOD)
+                        .title("Hanwood Centre"));
+                mHanwood.showInfoWindow();
+
+
+                mHanwood.setTag(0);
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(HANWOOD, 15));
+
+            }
+
+            if (mapLocation.equals("Eddie Irvine's")) {
+
+
+                mEddies = mMap.addMarker(new MarkerOptions()
+                        .position(EDDIES)
+                        .title("Eddie Irvine's"));
+                mEddies.showInfoWindow();
+
+
+                mEddies.setTag(0);
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(EDDIES, 10));
+
+            }
+
+            if (mapLocation.equals("Lagan Valley")) {
+
+
+                mLagan = mMap.addMarker(new MarkerOptions()
+                        .position(LAGAN)
+                        .title("Lagan Valley"));
+                mLagan.showInfoWindow();
+
+
+                mLagan.setTag(0);
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LAGAN, 10));
+
+            }
+
 
         }
     }
+}
+
+
 
 
 
