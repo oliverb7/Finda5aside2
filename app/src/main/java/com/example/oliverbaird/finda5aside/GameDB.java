@@ -9,6 +9,9 @@ public class GameDB {
     String gameID, gameCost, gameLocation, gameTime, gameSpaces,
             gameDate, gameNumber, skill, name;
 
+    public GameDB(){
+
+    }
 
     public GameDB(String gameID,String gameCost, String gameLocation, String gameTime, String gameSpaces, String gameDate, String gameNumber, String skill, String name) {
         this.gameID = gameID;

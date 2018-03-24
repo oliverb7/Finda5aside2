@@ -20,6 +20,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
@@ -48,7 +49,9 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
     String numberDetail,textDetail, locationDetail, costDetail, spacesDetail,
             dateDetail, skillDetail, nameDetail,timeDetail;
 
-    Button buttonCall, buttonText, buttonBook, buttonLocation;
+    Button buttonBook;
+
+    ImageButton imageCall, imageLocation, imageWebsite, imageMessage;
 
     //DECLARING
 
@@ -81,10 +84,17 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         textViewDetailsTime = findViewById(R.id.textViewDetailsTime);
         textViewDetailsNumber = findViewById(R.id.textViewDetailsNumber);
 
-        buttonCall = findViewById(R.id.buttonCall);
-        buttonLocation = findViewById(R.id.buttonLocation);
-        buttonText = findViewById(R.id.buttonText);
+//        buttonCall = findViewById(R.id.buttonCall);
+//        buttonLocation = findViewById(R.id.buttonLocation);
+//        buttonText = findViewById(R.id.buttonText);
         buttonBook = findViewById(R.id.buttonBook);
+
+        imageCall = findViewById(R.id.imageCall);
+        imageLocation = findViewById(R.id.imageLocation);
+        imageWebsite = findViewById(R.id.imageWebsite);
+        imageMessage = findViewById(R.id.imageMessage);
+
+
 
         //ensuring that the booking button is not clicked more than once
         findViewById(R.id.buttonBook).setOnClickListener(new View.OnClickListener() {
@@ -122,7 +132,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
             textViewDetailsLocation.setText(locationDetail);
             textViewDetailsCost.setText(costDetail);
-            textViewDetailsSpaces.setText(spacesDetail);
+            textViewDetailsSpaces.setText(spacesDetail + " spaces");
             textViewDetailsDate.setText(dateDetail);
             textViewDetailsSkill.setText(skillDetail);
             textViewDetailsNumber.setText(numberDetail);
@@ -133,7 +143,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
         //click listeners for finding location, texting, calling and booking.
 
-        buttonCall.setOnClickListener(new View.OnClickListener() {
+        imageCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
 
@@ -141,7 +151,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        buttonText.setOnClickListener(new View.OnClickListener() {
+        imageMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
 
@@ -149,7 +159,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        buttonLocation.setOnClickListener(new View.OnClickListener() {
+        imageLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
 
@@ -242,9 +252,9 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         }
 
         if (checkPermission(Manifest.permission.SEND_SMS)) {
-            buttonText.setEnabled(true);
+            imageMessage.setEnabled(true);
         } else {
-            buttonText.setEnabled(false);
+            imageMessage.setEnabled(false);
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, TEXT_PERMISSION);
         }
     }
@@ -276,7 +286,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         switch (requestCode) {
             case CALL_PERMISSION:
                 if (grantResults.length > 0 && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    buttonCall.setEnabled(true);
+                    imageCall.setEnabled(true);
                     Toast.makeText(this, "You can call the number by clicking on the button", Toast.LENGTH_SHORT).show();
                 }
                 return;
