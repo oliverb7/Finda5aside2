@@ -77,7 +77,7 @@
         android:layout_above="@+id/textViewSignUp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:background="#8BC34A"
+        android:background="@drawable/shapes_rounded"
         android:text="Sign In"
         android:textColor="#ffffff" />
 

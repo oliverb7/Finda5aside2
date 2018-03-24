@@ -34,6 +34,8 @@ public class MyGames extends AppCompatActivity implements NavigationView.OnNavig
     List<GameDB> gameDBListPrivate;
     FirebaseAuth mAuth;
 
+    String location, spaces, date, time, id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +66,11 @@ public class MyGames extends AppCompatActivity implements NavigationView.OnNavig
 
                 GameDB game = gameDBListPrivate.get(i);
 
-                String location = game.getGameLocation();
-                String spaces = game.getGameSpaces();
-                String date = game.getGameDate();
-                String time = game.getGameTime();
-                String id = game.getGameID();
+                location = game.getGameLocation();
+                spaces = game.getGameSpaces();
+                date = game.getGameDate();
+                time = game.getGameTime();
+                id = game.getGameID();
 
                 Intent intent1 = new Intent(getApplicationContext(), MyGamesDetails.class);
 

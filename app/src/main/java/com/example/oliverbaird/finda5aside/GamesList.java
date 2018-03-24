@@ -23,12 +23,15 @@ public class GamesList extends ArrayAdapter<GameDB> {
     private Activity context;
     private List<GameDB> gameList;
 
+    TextView textviewLocation, textviewTime, textviewSpaces, textviewCost, textviewDate, textViewSkill;
+
+    TextView txtViewLocationtext, txtViewCosttext, txtViewSpacestext, txtViewTimetext, txtViewDatetext, txtViewSkilltext;
+
     public GamesList(Activity context, List<GameDB> gameList){
         super(context, R.layout.game_view, gameList);
         this.context = context;
         this.gameList = gameList;
     }
-
 
     @NonNull
     @Override
@@ -37,23 +40,19 @@ public class GamesList extends ArrayAdapter<GameDB> {
 
         @SuppressLint("ViewHolder") View listViewItem = inflater.inflate(R.layout.game_view, null, true);
 
-        TextView textviewLocation = (TextView) listViewItem.findViewById(R.id.textviewLocation);
-        TextView textviewTime = (TextView) listViewItem.findViewById(R.id.textviewTime);
-        TextView textviewSpaces = (TextView) listViewItem.findViewById(R.id.textviewSpaces);
-        TextView textviewCost = (TextView) listViewItem.findViewById(R.id.textviewCost);
-        TextView textviewDate = (TextView) listViewItem.findViewById(R.id.textviewDate);
-        TextView textViewSkill = (TextView) listViewItem.findViewById(R.id.textviewSkill);
+        textviewLocation = listViewItem.findViewById(R.id.textviewLocation);
+        textviewTime = listViewItem.findViewById(R.id.textviewTime);
+        textviewSpaces = listViewItem.findViewById(R.id.textviewSpaces);
+        textviewCost = listViewItem.findViewById(R.id.textviewCost);
+        textviewDate = listViewItem.findViewById(R.id.textviewDate);
+        textViewSkill = listViewItem.findViewById(R.id.textviewSkill);
 
-
-
-        TextView txtViewLocationtext = (TextView) listViewItem.findViewById(R.id.txtViewLocationtext);
-        TextView txtViewCosttext = (TextView) listViewItem.findViewById(R.id.txtViewCosttext);
-        TextView txtViewSpacestext = (TextView) listViewItem.findViewById(R.id.txtViewSpacestext);
-        TextView txtViewTimetext = (TextView) listViewItem.findViewById(R.id.txtViewTimetext);
-        TextView txtViewDatetext = (TextView) listViewItem.findViewById(R.id.txtViewDatetext);
-        TextView txtViewSkilltext = (TextView) listViewItem.findViewById(R.id.txtViewSkilltext);
-
-
+        txtViewLocationtext = listViewItem.findViewById(R.id.txtViewLocationtext);
+        txtViewCosttext = listViewItem.findViewById(R.id.txtViewCosttext);
+        txtViewSpacestext = listViewItem.findViewById(R.id.txtViewSpacestext);
+        txtViewTimetext = listViewItem.findViewById(R.id.txtViewTimetext);
+        txtViewDatetext = listViewItem.findViewById(R.id.txtViewDatetext);
+        txtViewSkilltext = listViewItem.findViewById(R.id.txtViewSkilltext);
 
         GameDB game = gameList.get(position);
 

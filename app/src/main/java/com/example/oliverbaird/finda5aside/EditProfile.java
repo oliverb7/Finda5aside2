@@ -37,8 +37,7 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
     private ActionBarDrawerToggle menuToggle;
 
     ImageButton imageButton;
-    EditText editTextName;
-    EditText editTextAge;
+    EditText editTextName, editTextAge;
     Spinner spinnerLevel;
     String profileImgUrl;
     FirebaseAuth mAuth;
@@ -55,10 +54,10 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
 
         mAuth = FirebaseAuth.getInstance();
 
-        editTextName = (EditText)findViewById(R.id.editTextName);
-        editTextAge = (EditText) findViewById(R.id.editTextAge);
-        imageButton = (ImageButton) findViewById(R.id.imageButtonCamera);
-        spinnerLevel = (Spinner) findViewById(R.id.spinnerLevel);
+        editTextName = findViewById(R.id.editTextName);
+        editTextAge = findViewById(R.id.editTextAge);
+        imageButton = findViewById(R.id.imageButtonCamera);
+        spinnerLevel = findViewById(R.id.spinnerLevel);
 
         imageButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -90,8 +89,6 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
     private void saveUserInfo(){
 
         String displayName = editTextName.getText().toString();
-        String displayAge = editTextAge.getText().toString();
-        String displayLevel = spinnerLevel.getSelectedItem().toString();
 
         if(displayName.isEmpty()){
 

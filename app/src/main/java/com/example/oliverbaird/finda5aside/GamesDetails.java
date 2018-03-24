@@ -34,23 +34,21 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
     private DrawerLayout menuDrawerLayout;
     private ActionBarDrawerToggle menuToggle;
-    Button buttonCall;
-    Button buttonText;
-    Button buttonBook;
-    Button buttonLocation;
+
     private static final int CALL_PERMISSION = 1;
     private static final int TEXT_PERMISSION = 1;
     private long mLastClickTime = 0;
 
     private int notificationId;
 
-    //testing
     DatabaseReference databaseGames;
     DatabaseReference databaseGamesPrivate;
     FirebaseAuth mAuth;
 
-    String numberDetail;
-    String textDetail;
+    String numberDetail,textDetail, locationDetail, costDetail, spacesDetail,
+            dateDetail, skillDetail, nameDetail,timeDetail;
+
+    Button buttonCall, buttonText, buttonBook, buttonLocation;
 
     //DECLARING
 
@@ -83,6 +81,11 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         textViewDetailsTime = findViewById(R.id.textViewDetailsTime);
         textViewDetailsNumber = findViewById(R.id.textViewDetailsNumber);
 
+        buttonCall = findViewById(R.id.buttonCall);
+        buttonLocation = findViewById(R.id.buttonLocation);
+        buttonText = findViewById(R.id.buttonText);
+        buttonBook = findViewById(R.id.buttonBook);
+
         //ensuring that the booking button is not clicked more than once
         findViewById(R.id.buttonBook).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,16 +109,16 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         if (detailBundle != null)
 
         {
-            String locationDetail = detailBundle.getString("location");
-            String costDetail = detailBundle.getString("cost");
-            String spacesDetail = detailBundle.getString("spaces");
-            String dateDetail = detailBundle.getString("date");
-            String skillDetail = detailBundle.getString("skill");
+            locationDetail = detailBundle.getString("location");
+            costDetail = detailBundle.getString("cost");
+            spacesDetail = detailBundle.getString("spaces");
+            dateDetail = detailBundle.getString("date");
+            skillDetail = detailBundle.getString("skill");
             numberDetail = detailBundle.getString("number");
-            String nameDetail = detailBundle.getString("name");
-            String timeDetail = detailBundle.getString("time");
-            textDetail = "hi you location is" + detailBundle.getString("location" ) + detailBundle.getString("date");
-
+            nameDetail = detailBundle.getString("name");
+            timeDetail = detailBundle.getString("time");
+            textDetail = "Remember you have a 5aside on" + detailBundle.getString("date" ) + "at" +
+                    detailBundle.getString("time") + detailBundle.getString("location");
 
             textViewDetailsLocation.setText(locationDetail);
             textViewDetailsCost.setText(costDetail);
@@ -128,28 +131,115 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
         }
 
-        //click listener for the ability of a user to text about a game
+        //click listeners for finding location, texting, calling and booking.
 
-        buttonText = findViewById(R.id.buttonText);
+        buttonCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View V) {
+
+                buttonCallClick();
+            }
+        });
 
         buttonText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
 
-                String phoneNumber = textViewDetailsNumber.getText().toString();
-
-                if (!TextUtils.isEmpty(phoneNumber)) {
-                    if (checkPermission(Manifest.permission.SEND_SMS)) {
-                        String dial = "smsto:" + phoneNumber;
-                        startActivity(new Intent(Intent.ACTION_SENDTO, Uri.parse(dial)));
-                    } else {
-                        Toast.makeText(GamesDetails.this, "Permission Text denied", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(GamesDetails.this, "Enter a phone number", Toast.LENGTH_SHORT).show();
-                }
+                buttonTextClick();
             }
         });
+
+        buttonLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View V) {
+
+                buttonClickLocation();
+            }
+        });
+
+
+        buttonBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View V) {
+
+                buttonClickBook();
+            }
+        });
+
+    }
+
+    private void buttonClickBook(){
+
+        final Bundle detailBundle = getIntent().getExtras();
+
+        String spaces2 = detailBundle.getString("spaces");
+        int spacesInt = Integer.parseInt(spaces2);
+
+        if(spacesInt >= 1) {
+
+            spacesInt--;
+            Toast.makeText(GamesDetails.this, "You have successfully booked a place", Toast.LENGTH_SHORT).show();
+            String spacesRemaining = String.valueOf(spacesInt);
+            textViewDetailsSpaces.setText(spacesRemaining);
+            String id = detailBundle.getString("id");
+            databaseGames.child(id).child("gameSpaces").setValue(spacesRemaining);
+            databaseGamesPrivate.child(id).child("gameSpaces").setValue(spacesRemaining);
+            buttonBook.setEnabled(false);
+
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(numberDetail , null, textDetail, null, null);
+
+            //creation of the notification for the user once they have booked into a game
+
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(GamesDetails.this)
+                    .setSmallIcon(R.drawable.logologin)
+                    .setContentTitle("FA5 Booking")
+
+                    //setting a style of a lot of text
+
+                    .setStyle(new NotificationCompat.BigTextStyle()
+                            .bigText("Remember you have a game at " + detailBundle.getString("location" ) + " at " +
+                                    detailBundle.getString("time") + " on " + detailBundle.getString("date")))
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(GamesDetails.this);
+
+            // notificationId is a unique int for each notification that you must define
+            notificationManager.notify(notificationId, mBuilder.build());
+
+
+        } else if (spacesInt == 0){
+
+            Toast.makeText(GamesDetails.this, "There are no spaces left for this game", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private void buttonClickLocation(){
+
+        final Bundle detailBundle = getIntent().getExtras();
+
+        Intent intent2 = new Intent(getApplicationContext(), Location.class);
+        String location = detailBundle.getString("location");
+        intent2.putExtra("location", location);
+        startActivity(intent2);
+
+    }
+
+    private void buttonTextClick(){
+
+        String phoneNumber = textViewDetailsNumber.getText().toString();
+
+        if (!TextUtils.isEmpty(phoneNumber)) {
+            if (checkPermission(Manifest.permission.SEND_SMS)) {
+                String dial = "smsto:" + phoneNumber;
+                startActivity(new Intent(Intent.ACTION_SENDTO, Uri.parse(dial)));
+            } else {
+                Toast.makeText(GamesDetails.this, "Permission Text denied", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(GamesDetails.this, "Enter a phone number", Toast.LENGTH_SHORT).show();
+        }
 
         if (checkPermission(Manifest.permission.SEND_SMS)) {
             buttonText.setEnabled(true);
@@ -157,107 +247,24 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             buttonText.setEnabled(false);
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, TEXT_PERMISSION);
         }
-
-
-        //click listener for a user to find the location
-
-        buttonLocation = findViewById(R.id.buttonLocation);
-
-        buttonLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View V) {
-                Intent intent2 = new Intent(getApplicationContext(), Location.class);
-                String location = detailBundle.getString("location");
-                intent2.putExtra("location", location);
-                startActivity(intent2);
-//                startActivity(new Intent(GamesDetails.this, Location.class));
-            }
-        });
-
-        //click listener for user to be able to book a pitch
-
-        buttonBook = findViewById(R.id.buttonBook);
-
-        buttonBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View V) {
-
-                String spaces2 = detailBundle.getString("spaces");
-                int spacesInt = Integer.parseInt(spaces2);
-
-                if(spacesInt >= 1) {
-
-                    spacesInt--;
-                    Toast.makeText(GamesDetails.this, "You have successfully booked a place", Toast.LENGTH_SHORT).show();
-                    String spacesRemaining = String.valueOf(spacesInt);
-                    textViewDetailsSpaces.setText(spacesRemaining);
-                    String id = detailBundle.getString("id");
-                    databaseGames.child(id).child("gameSpaces").setValue(spacesRemaining);
-                    databaseGamesPrivate.child(id).child("gameSpaces").setValue(spacesRemaining);
-                    buttonBook.setEnabled(false);
-
-//
-
-                    SmsManager smsManager = SmsManager.getDefault();
-//                    Toast.makeText(GamesDetails.this, "You" + numberDetail, Toast.LENGTH_SHORT).show();
-                    smsManager.sendTextMessage(numberDetail , null, textDetail, null, null);
-
-                    //creation of the notification for the user once they have booked into a game
-
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(GamesDetails.this)
-                            .setSmallIcon(R.drawable.logologin)
-                            .setContentTitle("FA5 Booking")
-
-                            //setting a style of a lot of text
-
-                            .setStyle(new NotificationCompat.BigTextStyle()
-                                    .bigText("Remember you have a game at " + detailBundle.getString("location" ) + " at " + detailBundle.getString("time") + " on " + detailBundle.getString("date")))
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(GamesDetails.this);
-
-                    // notificationId is a unique int for each notification that you must define
-                    notificationManager.notify(notificationId, mBuilder.build());
-
-
-                } else if (spacesInt == 0){
-
-                    Toast.makeText(GamesDetails.this, "There are no spaces left for this game", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        //click listener which gives the user the ability call about a game
-
-        buttonCall = findViewById(R.id.buttonCall);
-
-        buttonCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View V) {
-
-                String phoneNumber = textViewDetailsNumber.getText().toString();
-
-                if (!TextUtils.isEmpty(phoneNumber)) {
-                    if (checkPermission(Manifest.permission.CALL_PHONE)) {
-                        String dial = "tel:" + phoneNumber;
-                        startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
-                    } else {
-                        Toast.makeText(GamesDetails.this, "Permission Call Phone denied", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(GamesDetails.this, "Enter a phone number", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
     }
 
+    private void buttonCallClick(){
 
+        String phoneNumber = textViewDetailsNumber.getText().toString();
 
+        if (!TextUtils.isEmpty(phoneNumber)) {
+            if (checkPermission(Manifest.permission.CALL_PHONE)) {
+                String dial = "tel:" + phoneNumber;
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+            } else {
+                Toast.makeText(GamesDetails.this, "Permission Call Phone denied", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(GamesDetails.this, "Enter a phone number", Toast.LENGTH_SHORT).show();
+        }
 
-
-
+    }
 
 
     private boolean checkPermission(String permission) {
@@ -273,8 +280,6 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(this, "You can call the number by clicking on the button", Toast.LENGTH_SHORT).show();
                 }
                 return;
-
-
         }
     }
 

@@ -48,23 +48,20 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
 
         mAuth = FirebaseAuth.getInstance();
 
-        menuDrawerLayout=(DrawerLayout) findViewById(R.id.drawerMenu);
+        menuDrawerLayout=findViewById(R.id.drawerMenu);
         menuToggle=new ActionBarDrawerToggle(FindGame.this, menuDrawerLayout,R.string.open,R.string.close);
         menuDrawerLayout.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView=(NavigationView)findViewById(R.id.navigation_view);
+        NavigationView navigationView=findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //reading in public games
         databaseGames = FirebaseDatabase.getInstance().getReference("games");
 
-        listviewGames = (ListView) findViewById(R.id.listviewGames);
+        listviewGames = findViewById(R.id.listviewGames);
 
         gameDBList = new ArrayList<>();
-
-//        final TextView textViewLocation = (TextView)findViewById(R.id.textviewLocation);
-
 
         listviewGames.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

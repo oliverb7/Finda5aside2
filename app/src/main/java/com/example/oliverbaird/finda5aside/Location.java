@@ -51,7 +51,7 @@ public class Location extends FragmentActivity implements
             Toast.makeText(Location.this, "Here is " + mapLocation, Toast.LENGTH_SHORT).show();
 
             mMap = map;
-            mMap.clear();
+//            mMap.clear();
 
             if (mapLocation.equals("PlayBall Stormont")) {
 
@@ -108,7 +108,7 @@ public class Location extends FragmentActivity implements
 
             }
 
-            if (mapLocation.equals("Eddie Irvine's")) {
+            if (mapLocation.equals("Eddie Irvine")) {
 
 
                 mEddies = mMap.addMarker(new MarkerOptions()
@@ -118,7 +118,7 @@ public class Location extends FragmentActivity implements
 
 
                 mEddies.setTag(0);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(EDDIES, 10));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(EDDIES, 15));
 
             }
 
@@ -132,7 +132,7 @@ public class Location extends FragmentActivity implements
 
 
                 mLagan.setTag(0);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LAGAN, 10));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LAGAN, 15));
 
             }
 

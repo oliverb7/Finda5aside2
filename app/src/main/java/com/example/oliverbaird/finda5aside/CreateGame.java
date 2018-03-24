@@ -26,20 +26,15 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
     private DrawerLayout menuDrawerLayout;
     private ActionBarDrawerToggle menuToggle;
 
-    Spinner spinnerTime;
-    Spinner spinnerLocation;
-    Spinner spinnerCost;
-    Spinner spinnerPlaces;
-    Spinner spinnerSkill;
-    EditText editTextDate;
-    EditText editTextNumber;
-    EditText editTextName;
+    Spinner spinnerTime, spinnerLocation, spinnerCost, spinnerPlaces, spinnerSkill;
+
+    EditText editTextDate, editTextNumber, editTextName;
+
     Button buttonAddData;
 
     FirebaseAuth mAuth;
 
-    DatabaseReference databaseGames;
-    DatabaseReference databaseGamesPrivate;
+    DatabaseReference databaseGames, databaseGamesPrivate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,27 +43,26 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
 
         mAuth = FirebaseAuth.getInstance();
 
-        menuDrawerLayout=(DrawerLayout) findViewById(R.id.drawerMenu);
+        menuDrawerLayout=findViewById(R.id.drawerMenu);
         menuToggle=new ActionBarDrawerToggle(CreateGame.this, menuDrawerLayout,R.string.open,R.string.close);
         menuDrawerLayout.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView=(NavigationView)findViewById(R.id.navigation_view);
+        NavigationView navigationView=findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         databaseGames = FirebaseDatabase.getInstance().getReference("games");
         databaseGamesPrivate = FirebaseDatabase.getInstance().getReference("gamesPersonal");
 
-        spinnerTime = (Spinner) findViewById(R.id.spinnerTime);
-        editTextName = (EditText) findViewById(R.id.editTextName);
-        spinnerLocation = (Spinner) findViewById(R.id.spinnerLocation);
-        spinnerCost = (Spinner) findViewById(R.id.spinnerCost);
-        spinnerPlaces = (Spinner) findViewById(R.id.spinnerPlaces);
-        spinnerSkill = (Spinner) findViewById(R.id.spinnerSkill);
-        buttonAddData = (Button) findViewById(R.id.buttonAddData);
-        editTextDate = (EditText) findViewById(R.id.editTextDate);
-        editTextNumber = (EditText) findViewById(R.id.editTextNumber);
-
+        spinnerTime = findViewById(R.id.spinnerTime);
+        editTextName = findViewById(R.id.editTextName);
+        spinnerLocation = findViewById(R.id.spinnerLocation);
+        spinnerCost = findViewById(R.id.spinnerCost);
+        spinnerPlaces = findViewById(R.id.spinnerPlaces);
+        spinnerSkill = findViewById(R.id.spinnerSkill);
+        buttonAddData = findViewById(R.id.buttonAddData);
+        editTextDate = findViewById(R.id.editTextDate);
+        editTextNumber = findViewById(R.id.editTextNumber);
 
         buttonAddData.setOnClickListener(new View.OnClickListener() {
             @Override
