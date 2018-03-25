@@ -20,6 +20,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,8 @@ import java.util.List;
 
 
 public class GamesDetails extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    //DECLARING
 
     private DrawerLayout menuDrawerLayout;
     private ActionBarDrawerToggle menuToggle;
@@ -49,11 +52,13 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
     String numberDetail,textDetail, locationDetail, costDetail, spacesDetail,
             dateDetail, skillDetail, nameDetail,timeDetail;
 
+    EditText editTextNameBook, editTextNumberBook;
+
+    String userName, userNumber;
+
     Button buttonBook;
 
     ImageButton imageCall, imageLocation, imageWebsite, imageMessage;
-
-    //DECLARING
 
     private TextView textViewDetailsLocation,textViewDetailsCost, textViewDetailsSpaces, textViewDetailsDate,
             textViewDetailsSkill,textViewDetailsName,textViewDetailsTime, textViewDetailsNumber;
@@ -84,10 +89,14 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         textViewDetailsTime = findViewById(R.id.textViewDetailsTime);
         textViewDetailsNumber = findViewById(R.id.textViewDetailsNumber);
 
-//        buttonCall = findViewById(R.id.buttonCall);
-//        buttonLocation = findViewById(R.id.buttonLocation);
-//        buttonText = findViewById(R.id.buttonText);
         buttonBook = findViewById(R.id.buttonBook);
+
+        editTextNameBook = findViewById(R.id.editTextNameBook);
+        editTextNumberBook = findViewById(R.id.editTextNumberBook);
+
+
+
+
 
         imageCall = findViewById(R.id.imageCall);
         imageLocation = findViewById(R.id.imageLocation);
@@ -127,8 +136,13 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             numberDetail = detailBundle.getString("number");
             nameDetail = detailBundle.getString("name");
             timeDetail = detailBundle.getString("time");
-            textDetail = "Remember you have a 5aside on" + detailBundle.getString("date" ) + "at" +
-                    detailBundle.getString("time") + detailBundle.getString("location");
+//            textDetail = "Remember you have a 5aside on" + detailBundle.getString("date" ) + "at" +
+//                    detailBundle.getString("time") + detailBundle.getString("location");
+
+
+
+
+
 
             textViewDetailsLocation.setText(locationDetail);
             textViewDetailsCost.setText(costDetail);
@@ -195,6 +209,12 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             databaseGames.child(id).child("gameSpaces").setValue(spacesRemaining);
             databaseGamesPrivate.child(id).child("gameSpaces").setValue(spacesRemaining);
             buttonBook.setEnabled(false);
+
+            userName = editTextNameBook.getText().toString();
+            userNumber = editTextNumberBook.getText().toString();
+
+            textDetail = "Hi " + detailBundle.getString("name") + " my name is " + userName + " and I have just signed up to play at your game on "
+                    + detailBundle.getString("date") + "." + " If there are any changes my phone number is " + userNumber + ".";
 
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(numberDetail , null, textDetail, null, null);
