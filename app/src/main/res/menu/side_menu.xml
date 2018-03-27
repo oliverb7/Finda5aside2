@@ -15,6 +15,9 @@
     <item android:id="@+id/mygames"
         android:title="My Games" android:icon="@drawable/mygames"></item>
 
+    <item android:id="@+id/information"
+        android:title="Information" android:icon="@drawable/information"></item>
+
     <item android:id="@+id/settings"
         android:title="Settings" android:icon="@drawable/settings"></item>
 

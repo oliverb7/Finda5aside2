@@ -76,26 +76,37 @@ public class MyGamesDetails extends AppCompatActivity implements NavigationView.
         if( id == R.id.home)
         {
             startActivity(new Intent(this, FindGame.class));
+            finish();
         }
 
         if( id == R.id.addgame)
         {
             startActivity(new Intent(this, CreateGame.class));
+            finish();
         }
 
         if( id == R.id.profile)
         {
             startActivity(new Intent(this, EditProfile.class));
+            finish();
         }
 
         if( id == R.id.mygames)
         {
             startActivity(new Intent(this, MyGames.class));
+            finish();
+        }
+
+        if( id == R.id.information)
+        {
+            startActivity(new Intent(this, Information.class));
+            finish();
         }
 
         if( id == R.id.settings)
         {
-            Toast.makeText(this, "You have selected settings", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, Settings.class));
+            finish();
         }
 
         if( id == R.id.logOut)

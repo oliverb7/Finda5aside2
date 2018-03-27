@@ -214,7 +214,7 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
 
         if( id == R.id.settings)
         {
-            Toast.makeText(this, "You have selected settings", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, Settings.class));
         }
 
         if( id == R.id.logOut)

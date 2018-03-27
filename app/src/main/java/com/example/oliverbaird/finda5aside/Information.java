@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Information extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout menuDrawerLayout;
     private ActionBarDrawerToggle menuToggle;
@@ -20,10 +20,10 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_information);
 
         menuDrawerLayout=findViewById(R.id.drawerMenu);
-        menuToggle=new ActionBarDrawerToggle(Settings.this, menuDrawerLayout,R.string.open,R.string.close);
+        menuToggle=new ActionBarDrawerToggle(Information.this, menuDrawerLayout,R.string.open,R.string.close);
         menuDrawerLayout.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -154,9 +154,14 @@ public class MyGames extends AppCompatActivity implements NavigationView.OnNavig
             startActivity(new Intent(this, MyGames.class));
         }
 
+        if( id == R.id.information)
+        {
+            startActivity(new Intent(this, Information.class));
+        }
+
         if( id == R.id.settings)
         {
-            Toast.makeText(this, "You have selected settings", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, Settings.class));
         }
 
         if( id == R.id.logOut)
