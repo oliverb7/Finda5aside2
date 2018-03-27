@@ -52,6 +52,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
     String numberDetail,textDetail, locationDetail, costDetail, spacesDetail,
             dateDetail, skillDetail, nameDetail,timeDetail, reviewNumber;
 
+    TextView textViewSpacesText;
+
     EditText editTextNameBook, editTextNumberBook;
 
     String userName, userNumber;
@@ -90,6 +92,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         textViewDetailsNumber = findViewById(R.id.textViewDetailsNumber);
         textViewReviewName = findViewById(R.id.textViewReviewName);
         textViewReviewNumber = findViewById(R.id.textViewReviewNumber);
+        textViewSpacesText = findViewById(R.id.textViewSpacesText);
 
         buttonBook = findViewById(R.id.buttonBook);
 
@@ -140,7 +143,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
             textViewDetailsLocation.setText(locationDetail);
             textViewDetailsCost.setText(costDetail);
-            textViewDetailsSpaces.setText(spacesDetail + " spaces");
+            textViewDetailsSpaces.setText(spacesDetail);
             textViewDetailsDate.setText(dateDetail);
             textViewDetailsSkill.setText(skillDetail);
             textViewDetailsNumber.setText(numberDetail);

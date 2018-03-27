@@ -106,10 +106,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="190dp"
             android:layout_marginLeft="230dp"
-            android:text="3 Spaces"
+            android:text="3"
             android:textSize="20dp"
             android:textStyle="bold"
                 />
+
+            <TextView
+                android:id="@+id/textViewSpacesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="190dp"
+                android:layout_marginLeft="247dp"
+                android:text="Spaces"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+
 
             <TextView
             android:id="@+id/textViewDetailsSkill"
