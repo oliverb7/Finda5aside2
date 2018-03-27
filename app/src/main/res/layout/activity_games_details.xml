@@ -135,50 +135,35 @@
                 android:id="@+id/textViewNameBook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="300dp"
-                android:text="Name"
-                android:layout_marginLeft="10dp"
-                />
+                android:layout_above="@+id/textViewNumberBook"
+                android:layout_alignStart="@+id/editTextNameBook"
+                android:layout_marginBottom="65dp"
+                android:text="Name" />
 
             <EditText
                 android:id="@+id/editTextNameBook"
                 android:layout_width="400dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="330dp"
-                android:layout_marginLeft="10dp"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="380dp"
-                android:text="Email"
-                android:layout_marginLeft="10dp"
-                />
-
-            <EditText
-                android:layout_width="400dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="410dp"
-                android:layout_marginLeft="10dp"
-                />
+                android:layout_above="@+id/textViewNumberBook"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="9dp" />
 
             <TextView
                 android:id="@+id/textViewNumberBook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="450dp"
-                android:text="Phone Number"
-                android:layout_marginLeft="10dp"
-                />
+                android:layout_alignBottom="@+id/editTextNumberBook"
+                android:layout_alignStart="@+id/editTextNumberBook"
+                android:layout_marginBottom="59dp"
+                android:text="Phone Number" />
 
             <EditText
                 android:id="@+id/editTextNumberBook"
                 android:layout_width="400dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="480dp"
-                android:layout_marginLeft="10dp"
-                />
+                android:layout_alignBottom="@+id/buttonBook"
+                android:layout_alignStart="@+id/textViewNameBook"
+                android:layout_marginBottom="59dp" />
 
             <Button
             android:id="@+id/buttonBook"
@@ -189,6 +174,45 @@
             android:layout_marginTop="550dp"
             android:layout_marginLeft="6dp"
             android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/textViewReviewNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="360dp"
+                android:layout_marginTop="300dp"
+
+
+                android:text="2"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewReviewName"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_alignStart="@+id/textViewNameBook"
+                android:layout_below="@+id/imageButtonArrowUp"
+                android:text="TextView"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <ImageButton
+                android:id="@+id/imageButtonArrowUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="270dp"
+                android:layout_marginLeft="351dp"
+                android:background="#ffffff"
+                app:srcCompat="@drawable/uparrow" />
+
+            <ImageButton
+                android:id="@+id/imageButtonArrowDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="330dp"
+                android:layout_marginLeft="351dp"
+                android:background="#ffffff"
+                app:srcCompat="@drawable/downarrow" />
 
         </RelativeLayout>
 

@@ -78,6 +78,7 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
                 String name = game.getName();
                 String time =  game.getGameTime();
                 String id = game.getGameID();
+                String votes = game.getReviewNumber();
 
                 Intent intent1 = new Intent(getApplicationContext(), GamesDetails.class);
                 intent1.putExtra("location", location);
@@ -89,7 +90,7 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
                 intent1.putExtra("name", name);
                 intent1.putExtra("time", time);
                 intent1.putExtra("id", id);
-
+                intent1.putExtra("votes", votes);
 
                 startActivity(intent1);
 

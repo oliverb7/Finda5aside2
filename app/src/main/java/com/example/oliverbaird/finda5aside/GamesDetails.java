@@ -50,7 +50,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
     FirebaseAuth mAuth;
 
     String numberDetail,textDetail, locationDetail, costDetail, spacesDetail,
-            dateDetail, skillDetail, nameDetail,timeDetail;
+            dateDetail, skillDetail, nameDetail,timeDetail, reviewNumber = "0";
 
     EditText editTextNameBook, editTextNumberBook;
 
@@ -58,10 +58,10 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
     Button buttonBook;
 
-    ImageButton imageCall, imageLocation, imageWebsite, imageMessage;
+    ImageButton imageCall, imageLocation, imageWebsite, imageMessage, imageButtonArrowUp, imageButtonArrowDown;
 
     private TextView textViewDetailsLocation,textViewDetailsCost, textViewDetailsSpaces, textViewDetailsDate,
-            textViewDetailsSkill,textViewDetailsName,textViewDetailsTime, textViewDetailsNumber;
+            textViewDetailsSkill,textViewDetailsName,textViewDetailsTime, textViewDetailsNumber, textViewReviewName, textViewReviewNumber;
 
 
     @Override
@@ -88,20 +88,20 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         textViewDetailsName = findViewById(R.id.textViewDetailsName);
         textViewDetailsTime = findViewById(R.id.textViewDetailsTime);
         textViewDetailsNumber = findViewById(R.id.textViewDetailsNumber);
+        textViewReviewName = findViewById(R.id.textViewReviewName);
+        textViewReviewNumber = findViewById(R.id.textViewReviewNumber);
 
         buttonBook = findViewById(R.id.buttonBook);
 
         editTextNameBook = findViewById(R.id.editTextNameBook);
         editTextNumberBook = findViewById(R.id.editTextNumberBook);
 
-
-
-
-
         imageCall = findViewById(R.id.imageCall);
         imageLocation = findViewById(R.id.imageLocation);
         imageWebsite = findViewById(R.id.imageWebsite);
         imageMessage = findViewById(R.id.imageMessage);
+        imageButtonArrowDown = findViewById(R.id.imageButtonArrowDown);
+        imageButtonArrowUp = findViewById(R.id.imageButtonArrowUp);
 
 
 
@@ -136,13 +136,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             numberDetail = detailBundle.getString("number");
             nameDetail = detailBundle.getString("name");
             timeDetail = detailBundle.getString("time");
-//            textDetail = "Remember you have a 5aside on" + detailBundle.getString("date" ) + "at" +
-//                    detailBundle.getString("time") + detailBundle.getString("location");
-
-
-
-
-
+//            reviewNumber = detailBundle.getString("votes");
 
             textViewDetailsLocation.setText(locationDetail);
             textViewDetailsCost.setText(costDetail);
@@ -152,6 +146,12 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             textViewDetailsNumber.setText(numberDetail);
             textViewDetailsName.setText(nameDetail);
             textViewDetailsTime.setText(timeDetail);
+            textViewReviewNumber.setText(reviewNumber);
+
+            Toast.makeText(GamesDetails.this, "Votes " + reviewNumber, Toast.LENGTH_SHORT).show();
+
+            textViewReviewName.setText("Have you played with " + detailBundle.getString("name") + " before? Leave a vote" +
+                    " or downvote based on your experience");
 
         }
 
@@ -189,6 +189,53 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
                 buttonClickBook();
             }
         });
+
+        imageButtonArrowUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View V) {
+
+                upVote();
+            }
+        });
+
+        imageButtonArrowDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View V) {
+
+                downVote();
+            }
+        });
+
+    }
+
+    private void upVote(){
+
+            final Bundle detailBundle = getIntent().getExtras();
+
+//        String upVotes = detailBundle.getString("reviewNumber");
+            int votesPositive = Integer.parseInt(reviewNumber);
+
+            votesPositive++;
+            String stringVotes = String.valueOf(votesPositive);
+            textViewReviewNumber.setText(stringVotes);
+            String id = detailBundle.getString("id");
+            databaseGames.child(id).child("reviewNumber").setValue(stringVotes);
+
+        }
+
+
+    private void downVote(){
+
+        final Bundle detailBundle = getIntent().getExtras();
+
+//        String upVotes = detailBundle.getString("reviewNumber");
+        int votesNegative = Integer.parseInt(reviewNumber);
+
+        votesNegative--;
+        String stringVotes = String.valueOf(votesNegative);
+        textViewReviewNumber.setText(stringVotes);
+        String id = detailBundle.getString("id");
+        databaseGames.child(id).child("reviewNumber").setValue(stringVotes);
 
     }
 

@@ -7,13 +7,13 @@ package com.example.oliverbaird.finda5aside;
 public class GameDB {
 
     String gameID, gameCost, gameLocation, gameTime, gameSpaces,
-            gameDate, gameNumber, skill, name;
+            gameDate, gameNumber, skill, name, reviewNumber;
 
     public GameDB(){
 
     }
 
-    public GameDB(String gameID,String gameCost, String gameLocation, String gameTime, String gameSpaces, String gameDate, String gameNumber, String skill, String name) {
+    public GameDB(String gameID,String gameCost, String gameLocation, String gameTime, String gameSpaces, String gameDate, String gameNumber, String skill, String name, String reviewNumber) {
         this.gameID = gameID;
         this.gameCost = gameCost;
         this.gameLocation = gameLocation;
@@ -23,6 +23,7 @@ public class GameDB {
         this.gameNumber = gameNumber;
         this.skill = skill;
         this.name = name;
+        this.reviewNumber = reviewNumber;
     }
 
     public String getGameID() {
@@ -52,4 +53,6 @@ public class GameDB {
     public String getSkill() {return skill;}
 
     public String getName() {return name;}
+
+    public String getReviewNumber() {return reviewNumber;}
 }
