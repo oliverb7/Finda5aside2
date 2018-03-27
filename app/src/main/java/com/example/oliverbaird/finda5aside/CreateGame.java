@@ -82,14 +82,14 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
         String date = editTextDate.getText().toString();
         String number = editTextNumber.getText().toString();
         String skill = spinnerSkill.getSelectedItem().toString();
-        String votes = "0";
+        String reviewNumber = "0";
 
         if(!TextUtils.isEmpty(time)) {
 
 
                 String id = databaseGames.push().getKey();
                 String uid = mAuth.getCurrentUser().getUid();
-                GameDB game = new GameDB(id, cost, location, time, spaces, date, number, skill, name, votes);
+                GameDB game = new GameDB(id, cost, location, time, spaces, date, number, skill, name, reviewNumber);
 
                 databaseGames.child(id).setValue(game);
                 databaseGamesPrivate.child(uid).child(id).setValue(game);

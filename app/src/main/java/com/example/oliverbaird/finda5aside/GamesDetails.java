@@ -50,7 +50,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
     FirebaseAuth mAuth;
 
     String numberDetail,textDetail, locationDetail, costDetail, spacesDetail,
-            dateDetail, skillDetail, nameDetail,timeDetail, reviewNumber = "0";
+            dateDetail, skillDetail, nameDetail,timeDetail, reviewNumber;
 
     EditText editTextNameBook, editTextNumberBook;
 
@@ -136,7 +136,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             numberDetail = detailBundle.getString("number");
             nameDetail = detailBundle.getString("name");
             timeDetail = detailBundle.getString("time");
-//            reviewNumber = detailBundle.getString("votes");
+            reviewNumber = detailBundle.getString("votes");
 
             textViewDetailsLocation.setText(locationDetail);
             textViewDetailsCost.setText(costDetail);
@@ -212,31 +212,27 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
             final Bundle detailBundle = getIntent().getExtras();
 
-//        String upVotes = detailBundle.getString("reviewNumber");
-            int votesPositive = Integer.parseInt(reviewNumber);
-
-            votesPositive++;
-            String stringVotes = String.valueOf(votesPositive);
+            String votes = detailBundle.getString("votes");
+            int votesOverall = Integer.parseInt(votes);
+            votesOverall++;
+            String stringVotes = String.valueOf(votesOverall);
             textViewReviewNumber.setText(stringVotes);
             String id = detailBundle.getString("id");
             databaseGames.child(id).child("reviewNumber").setValue(stringVotes);
-
         }
 
 
     private void downVote(){
 
-        final Bundle detailBundle = getIntent().getExtras();
+            final Bundle detailBundle = getIntent().getExtras();
 
-//        String upVotes = detailBundle.getString("reviewNumber");
-        int votesNegative = Integer.parseInt(reviewNumber);
-
-        votesNegative--;
-        String stringVotes = String.valueOf(votesNegative);
-        textViewReviewNumber.setText(stringVotes);
-        String id = detailBundle.getString("id");
-        databaseGames.child(id).child("reviewNumber").setValue(stringVotes);
-
+            String votes = detailBundle.getString("votes");
+            int votesOverall = Integer.parseInt(votes);
+            votesOverall--;
+            String stringVotes = String.valueOf(votesOverall);
+            textViewReviewNumber.setText(stringVotes);
+            String id = detailBundle.getString("id");
+            databaseGames.child(id).child("reviewNumber").setValue(stringVotes);
     }
 
     private void buttonClickBook(){
