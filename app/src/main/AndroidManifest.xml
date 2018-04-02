@@ -23,7 +23,7 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <!--              The API key for Google Maps-based APIs. -->
+        <!-- The API key for Google Maps-based APIs. -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -31,7 +31,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".FindGame" />
         <activity android:name=".Settings" />
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,8 +48,8 @@
         <activity android:name=".MyGamesDetails" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".Location" />
-        <activity android:name=".Information"></activity>
-
+        <activity android:name=".Information" />
+        <activity android:name=".PayPal"></activity>
     </application>
 
 </manifest>

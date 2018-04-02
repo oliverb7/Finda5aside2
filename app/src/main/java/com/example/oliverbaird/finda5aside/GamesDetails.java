@@ -286,6 +286,10 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             // notificationId is a unique int for each notification that you must define
             notificationManager.notify(notificationId, mBuilder.build());
 
+            startActivity(new Intent(this, PayPal.class));
+
+
+
 
         } else if (spacesInt == 0){
 
