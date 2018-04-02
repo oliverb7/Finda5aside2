@@ -4,30 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:id="@+id/drawerMenu"
     tools:context="com.example.oliverbaird.finda5aside.EditProfile">
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="50dp"
+        android:layout_height="300dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textViewAddPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
             android:fontFamily="sans-serif"
-            android:paddingTop="20dp"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:text="Tap on camera to add photo" />
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:textColor="#000000"
+            android:text="Tap on camera to add photo" />
 
         <ImageButton
             android:id="@+id/imageButtonCamera"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:background="@drawable/camera_icon" />
@@ -52,9 +52,8 @@
             android:id="@+id/editTextName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/textViewAge"
-            android:layout_alignStart="@+id/textViewAge"
-            android:layout_marginBottom="14dp"
+            android:layout_alignStart="@+id/editTextAge"
+            android:layout_centerVertical="true"
             android:ems="10"
             android:inputType="textPersonName" />
 
@@ -62,8 +61,9 @@
             android:id="@+id/textViewAge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/editTextAge"
-            android:layout_alignStart="@+id/editTextAge"
+            android:layout_alignStart="@+id/editTextName"
+            android:layout_below="@+id/editTextName"
+            android:layout_marginTop="46dp"
             android:text="Age"
             android:textStyle="bold" />
 
@@ -71,40 +71,21 @@
             android:id="@+id/editTextAge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/textViewLevel"
+            android:layout_below="@+id/textViewAge"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="53dp"
             android:ems="10"
             android:inputType="textPersonName" />
 
-        <TextView
-            android:id="@+id/textViewLevel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/spinnerLevel"
-            android:layout_alignStart="@+id/editTextAge"
-            android:layout_marginBottom="53dp"
-            android:text="Skill Level"
-            android:textStyle="bold" />
-
-        <Spinner
-            android:id="@+id/spinnerLevel"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/buttonSaveDetails"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="40dp"
-            android:layout_marginEnd="70dp"
-            android:entries="@array/levels" />
 
         <Button
             android:id="@+id/buttonSaveDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="12dp"
-            android:text="Save" />
+            android:layout_marginTop="480dp"
+            android:background="@drawable/shapes_rounded"
+            android:text="Save"
+            android:textColor="#ffffff" />
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView

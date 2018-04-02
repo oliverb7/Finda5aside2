@@ -17,12 +17,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:paddingLeft="150dp"
-            android:paddingRight="150dp"
+            android:paddingLeft="170dp"
             android:paddingTop="10dp"
             android:text="@string/settingstext"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:text="Colour Change"
+            android:textSize="20sp" />
+
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:text="Increase Text Size"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

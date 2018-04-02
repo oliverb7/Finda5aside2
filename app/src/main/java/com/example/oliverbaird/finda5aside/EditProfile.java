@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,7 +39,7 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
 
     ImageButton imageButton;
     EditText editTextName, editTextAge;
-    Spinner spinnerLevel;
+    TextView textViewAddPhoto;
     String profileImgUrl;
     FirebaseAuth mAuth;
 
@@ -57,7 +58,7 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
         editTextName = findViewById(R.id.editTextName);
         editTextAge = findViewById(R.id.editTextAge);
         imageButton = findViewById(R.id.imageButtonCamera);
-        spinnerLevel = findViewById(R.id.spinnerLevel);
+        textViewAddPhoto = findViewById(R.id.textViewAddPhoto);
 
         imageButton.setOnClickListener(new View.OnClickListener(){
             @Override
