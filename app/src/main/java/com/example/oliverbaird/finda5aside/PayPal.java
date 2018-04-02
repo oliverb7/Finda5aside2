@@ -58,7 +58,6 @@ public class PayPal extends AppCompatActivity {
                 processPayment();
             }
         });
-
     }
 
     private void processPayment() {
@@ -67,7 +66,7 @@ public class PayPal extends AppCompatActivity {
         PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(amount)), "GBR",
                 "Pay for football", PayPalPayment.PAYMENT_INTENT_SALE);
 
-        Intent intent = new Intent(this, PayPalPayment.class);
+        Intent intent = new Intent(this, PaymentActivity.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payPalPayment);
         startActivityForResult(intent, PAYPAL_REQUEST_CODE);
