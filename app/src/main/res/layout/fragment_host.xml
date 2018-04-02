@@ -15,9 +15,38 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp"
-            android:text = "Host Info"
-            />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:text="Information for hosts"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/textView_infoTextHost1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="57dp"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="If you are to host a game, please ensure all details are entered correctly." />
+
+        <TextView
+            android:id="@+id/textView_infoTextHost2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="100dp"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="If there is a cancellation to a game, you must inform players as soon as possible." />
 
     </RelativeLayout>
 

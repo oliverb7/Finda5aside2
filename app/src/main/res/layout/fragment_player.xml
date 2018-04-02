@@ -15,8 +15,26 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp"
-            android:text="Player Info" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:text="Information for players"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/textView_infoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="57dp"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="You have the ability to sign up for a number of games. If you sign up for a game, please take note of the hosts mobile number incase you can no longer attend." />
 
     </RelativeLayout>
 

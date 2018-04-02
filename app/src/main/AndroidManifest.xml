@@ -31,7 +31,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".FindGame" />
         <activity android:name=".Settings" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,6 +48,7 @@
         <activity android:name=".ForgotPassword" />
         <activity android:name=".Location" />
         <activity android:name=".Information"></activity>
+
     </application>
 
 </manifest>

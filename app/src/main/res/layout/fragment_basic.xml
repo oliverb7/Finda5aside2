@@ -15,8 +15,71 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:text="Welcome to Find a 5aside"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/textView_infoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="57dp"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="In this area you will be able to find out more about find a 5aside." />
+
+        <TextView
+            android:id="@+id/textViewWhat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView_infoText"
             android:padding="20dp"
-            android:text="App Info" />
+            android:text="What is it?"
+            android:textSize="18sp"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/textViewNetwork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView_infoText"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:layout_marginTop="37dp"
+            android:padding="20dp"
+            android:text="Find a 5aside is an app that will help you grow your 5aside network." />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:paddingLeft="20dp"
+            android:paddingTop="200dp"
+            android:text="What can I do within the app?"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/textViewAppDoes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="220dp"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:padding="20dp"
+            android:text="Find a 5aside allows you to host a game of football to get more players for your 5aside game or allows you to join a game of football." />
 
     </RelativeLayout>
 

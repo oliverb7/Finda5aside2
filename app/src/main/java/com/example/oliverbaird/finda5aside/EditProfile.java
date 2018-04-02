@@ -212,6 +212,11 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
             startActivity(new Intent(this, MyGames.class));
         }
 
+        if( id == R.id.information)
+        {
+            startActivity(new Intent(this, Information.class));
+        }
+
         if( id == R.id.settings)
         {
             startActivity(new Intent(this, Settings.class));

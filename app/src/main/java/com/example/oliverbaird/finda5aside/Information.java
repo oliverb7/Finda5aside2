@@ -25,6 +25,8 @@ public class Information extends AppCompatActivity implements NavigationView.OnN
 
     private PageViewAdapter mPageAdapter;
 
+    private TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

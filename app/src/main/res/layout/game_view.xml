@@ -15,6 +15,7 @@
         android:layout_marginLeft="5dp"
         android:text="TextView"
         android:textStyle="bold"
+        android:textColor="#000000"
         tools:text="Location:" />
 
     <TextView
@@ -27,6 +28,7 @@
         android:layout_marginLeft="5dp"
         android:text="TextView"
         android:textStyle="bold"
+        android:textColor="#000000"
         tools:text="Time:" />
 
     <TextView
@@ -39,6 +41,7 @@
         android:layout_marginLeft="5dp"
         android:text="TextView"
         android:textStyle="bold"
+        android:textColor="#000000"
         tools:text="Cost:" />
 
     <TextView
@@ -50,6 +53,7 @@
         android:layout_alignStart="@+id/txtViewDatetext"
         android:text="TextView"
         android:textStyle="bold"
+        android:textColor="#000000"
         tools:text="Places available:" />
 
     <TextView
@@ -60,7 +64,8 @@
         android:text="Date:"
         android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/txtViewSkilltext"
@@ -72,7 +77,8 @@
         android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
         android:text="Skill Level:"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 
 
     <TextView
@@ -83,7 +89,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="5dp"
-        android:text="Playball Stormont" />
+        android:text="Playball Stormont"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/textviewTime"
@@ -93,7 +100,8 @@
         android:layout_below="@+id/textviewLocation"
         android:layout_marginTop="2dp"
         android:layout_marginRight="5dp"
-        android:text="10am" />
+        android:text="10am"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/textviewCost"
@@ -104,7 +112,8 @@
         android:layout_marginTop="2dp"
         android:layout_marginRight="5dp"
         android:layout_alignParentEnd="true"
-        android:text="£1" />
+        android:text="£1"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/textviewSpaces"
@@ -114,7 +123,8 @@
         android:layout_below="@+id/textviewCost"
         android:layout_marginTop="2dp"
         android:layout_marginRight="5dp"
-        android:text="3" />
+        android:text="3"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/textviewDate"
@@ -124,7 +134,8 @@
         android:layout_below="@+id/textviewSpaces"
         android:text="25/06/18"
         android:layout_marginTop="2dp"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginRight="5dp"
+        android:textColor="#000000"/>
 
 
     <TextView
@@ -135,6 +146,7 @@
         android:layout_below="@+id/textviewDate"
         android:text="Beginner"
         android:layout_marginTop="2dp"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginRight="5dp"
+        android:textColor="#000000"/>
 
 </RelativeLayout>
