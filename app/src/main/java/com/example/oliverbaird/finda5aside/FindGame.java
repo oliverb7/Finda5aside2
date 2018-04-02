@@ -93,10 +93,8 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
                 intent1.putExtra("votes", votes);
 
                 startActivity(intent1);
-
             }
         });
-
     }
 
     @Override
@@ -116,13 +114,10 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
 
                     gameDBList.add(game);
                 }
-
                 GamesList adapter = new GamesList(FindGame.this, gameDBList);
                 listviewGames.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 Collections.reverse(gameDBList);
-
-
             }
 
             @Override

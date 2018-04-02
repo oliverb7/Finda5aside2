@@ -52,6 +52,10 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
     String numberDetail,textDetail, locationDetail, costDetail, spacesDetail,
             dateDetail, skillDetail, nameDetail,timeDetail, reviewNumber;
 
+    String upordownVote = " before? Leave a vote or downvote based on your experience";
+
+    String haveYou = "Have you played with ";
+
     TextView textViewSpacesText;
 
     EditText editTextNameBook, editTextNumberBook;
@@ -151,10 +155,9 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             textViewDetailsTime.setText(timeDetail);
             textViewReviewNumber.setText(reviewNumber);
 
-            Toast.makeText(GamesDetails.this, "Votes " + reviewNumber, Toast.LENGTH_SHORT).show();
 
-            textViewReviewName.setText("Have you played with " + detailBundle.getString("name") + " before? Leave a vote" +
-                    " or downvote based on your experience");
+            textViewReviewName.setText(haveYou +
+                    nameDetail + upordownVote);
 
         }
 

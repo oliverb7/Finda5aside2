@@ -5,7 +5,61 @@
     android:id="@+id/drawerMenu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#8BC34A"
     tools:context="com.example.oliverbaird.finda5aside.Information">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/basicLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="15dp"
+                android:text="App Info"
+                android:textColor="@color/textTabBright"
+                android:textSize="18sp"
+                tools:text="App Info" />
+
+            <TextView
+                android:id="@+id/hostLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="15dp"
+                android:text="Host"
+                android:textColor="@color/textTabLight"
+                android:textSize="18sp"
+                tools:text="Host" />
+
+            <TextView
+                android:id="@+id/playerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="15dp"
+                android:text="Player"
+                android:textColor="@color/textTabLight"
+                android:textSize="18sp"
+                tools:text="Player" />
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/mainPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="59dp"></android.support.v4.view.ViewPager>
+    </RelativeLayout>
 
     <android.support.design.widget.NavigationView
         app:headerLayout="@layout/header"
