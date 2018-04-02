@@ -66,19 +66,23 @@ public class PayPal extends AppCompatActivity {
         amount = editTextAmount.getText().toString();
         PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(amount)), "GBR",
                 "Pay for football", PayPalPayment.PAYMENT_INTENT_SALE);
-        Intent intent = new Intent(this, PayPal.class);
+
+        Intent intent = new Intent(this, PayPalPayment.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payPalPayment);
         startActivityForResult(intent, PAYPAL_REQUEST_CODE);
-
     }
 
-    protected void onActivity(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+
+        super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == PAYPAL_REQUEST_CODE)
         {
             if(resultCode == RESULT_OK)
             {
                 PaymentConfirmation confirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+
                 if(confirmation != null)
                 {
                         String state = confirmation.getProofOfPayment().getState();
