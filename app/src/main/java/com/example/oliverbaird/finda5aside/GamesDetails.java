@@ -1,5 +1,6 @@
 package com.example.oliverbaird.finda5aside;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -28,13 +29,25 @@ import android.Manifest;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
 public class GamesDetails extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //DECLARING
+
+    private static final int m_PAYPAL_REQUEST_CODE = 7171;
+    Intent m_service;
+    PayPalConfiguration m_configuration;
+    String amount = "";
+    public static final String PAYPAL_CLIENT_ID = "AZKFiPvkx92lr65JU-ofrg4OlIC0lhvG42SNMzldvkuagGY0tSRZmXCNY0fN8obcyGBM8AWxRLoVI7if";
 
     private DrawerLayout menuDrawerLayout;
     private ActionBarDrawerToggle menuToggle;
@@ -110,19 +123,28 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         imageButtonArrowDown = findViewById(R.id.imageButtonArrowDown);
         imageButtonArrowUp = findViewById(R.id.imageButtonArrowUp);
 
+        m_configuration = new PayPalConfiguration()
+                .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) //sandbox for test
+                .clientId(PAYPAL_CLIENT_ID);
+
+        //start PayPal Service
+        m_service = new Intent (this, PayPalService.class);
+        m_service.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,m_configuration);
+        startService(m_service);
 
 
-        //ensuring that the booking button is not clicked more than once
-        findViewById(R.id.buttonBook).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // mis-clicking prevention, using threshold of 1000 ms
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
-            }
-        });
+//
+//        //ensuring that the booking button is not clicked more than once
+//        findViewById(R.id.buttonBook).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // mis-clicking prevention, using threshold of 1000 ms
+//                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+//                    return;
+//                }
+//                mLastClickTime = SystemClock.elapsedRealtime();
+//            }
+//        });
 
         mAuth = FirebaseAuth.getInstance();
         final String uid = mAuth.getCurrentUser().getUid();
@@ -188,13 +210,13 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         });
 
 
-        buttonBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View V) {
-
-                startActivity(new Intent(GamesDetails.this, PayPal.class));
-            }
-        });
+//        buttonBook.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View V) {
+//
+//                pay();
+//            }
+//        });
 
         imageButtonArrowUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,6 +234,50 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             }
         });
 
+    }
+
+    void pay(View view) {
+
+        final Bundle detailBundle = getIntent().getExtras();
+
+        String costPay = detailBundle.getString("cost");
+
+        int costPayPal = Integer.parseInt(costPay);
+
+
+        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(costPayPal), "GBP",
+                "Pay for football", PayPalPayment.PAYMENT_INTENT_SALE);
+
+        Intent intent = new Intent(this, PaymentActivity.class);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, m_configuration);
+        intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payPalPayment);
+        startActivityForResult(intent, m_PAYPAL_REQUEST_CODE);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == m_PAYPAL_REQUEST_CODE)
+        {
+            if(resultCode == Activity.RESULT_OK)
+            {
+                PaymentConfirmation confirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+
+                if(confirmation != null)
+                {
+                    String state = confirmation.getProofOfPayment().getState();
+
+                    if (state.equals("approved")) {//if the payment worked, the state equals approved
+                        Toast.makeText(this, "Payment Approved", Toast.LENGTH_SHORT).show();
+                        buttonClickBook();
+                    } else
+                        Toast.makeText(this, "Payment Declined", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }
+//        else Toast.makeText(this, "Payment Declined", Toast.LENGTH_SHORT).show();
     }
 
     private void upVote(){
@@ -257,7 +323,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             String id = detailBundle.getString("id");
             databaseGames.child(id).child("gameSpaces").setValue(spacesRemaining);
             databaseGamesPrivate.child(id).child("gameSpaces").setValue(spacesRemaining);
-            buttonBook.setEnabled(false);
+//            buttonBook.setEnabled(false);
 
             userName = editTextNameBook.getText().toString();
             userNumber = editTextNumberBook.getText().toString();
