@@ -22,35 +22,38 @@ public class PayPal extends AppCompatActivity {
 
     private static final int PAYPAL_REQUEST_CODE = 7171;
 
-    private static PayPalConfiguration config = new PayPalConfiguration()
-            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) //sandbox for test
-            .clientId(Config.PAYPAL_CLIENT_ID);
+
 
     Button buttonPayNow;
-    EditText editTextAmount;
+    TextView textResponse;
     Intent m_service;
-
+    PayPalConfiguration m_configuration;
     String amount = "";
 
-    @Override
-    protected void onDestroy(){
-        stopService(new Intent(this, PayPalService.class));
-        super.onDestroy();
-    }
+//    @Override
+//    protected void onDestroy(){
+//        stopService(new Intent(this, PayPalService.class));
+//        super.onDestroy();
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_pal);
 
+        buttonPayNow = findViewById(R.id.buttonPayNow);
+
+        textResponse = findViewById(R.id.textResponse);
+
+        m_configuration = new PayPalConfiguration()
+                .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) //sandbox for test
+                .clientId(Config.PAYPAL_CLIENT_ID);
+
         //Start PayPal service
 
         m_service = new Intent (this, PayPalService.class);
-        m_service.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,config);
+        m_service.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,m_configuration);
         startService(m_service);
-
-        buttonPayNow = findViewById(R.id.buttonPayNow);
-        editTextAmount = findViewById(R.id.editTextAmount);
 
         buttonPayNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,12 +65,12 @@ public class PayPal extends AppCompatActivity {
 
     private void processPayment() {
 
-        amount = editTextAmount.getText().toString();
-        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(amount)), "GBR",
+//        amount = .getText().toString();
+        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(10), "USD",
                 "Pay for football", PayPalPayment.PAYMENT_INTENT_SALE);
 
         Intent intent = new Intent(this, PaymentActivity.class);
-        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, m_configuration);
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payPalPayment);
         startActivityForResult(intent, PAYPAL_REQUEST_CODE);
     }
@@ -93,7 +96,7 @@ public class PayPal extends AppCompatActivity {
                     else
                     Toast.makeText(this, "Payment Declined", Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(this, "Confirmation is null", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Confirmation is null", Toast.LENGTH_SHORT).show();
             }
         }
     }
