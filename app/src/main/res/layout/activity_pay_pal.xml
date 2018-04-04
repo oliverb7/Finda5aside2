@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="8dp">
 
         <TextView
-            android:id="@+id/textResponse"
+            android:id="@+id/reponse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -25,6 +25,7 @@
             android:id="@+id/buttonPayNow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PAY NOW" />
+            android:text="PAY NOW"
+            android:onClick="pay"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -71,7 +71,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games_details);
 
@@ -192,7 +192,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View V) {
 
-                buttonClickBook();
+                startActivity(new Intent(GamesDetails.this, PayPal.class));
             }
         });
 
@@ -241,7 +241,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             databaseGames.child(id).child("reviewNumber").setValue(stringVotes);
     }
 
-    private void buttonClickBook(){
+    public void buttonClickBook(){
 
         final Bundle detailBundle = getIntent().getExtras();
 
@@ -286,7 +286,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             // notificationId is a unique int for each notification that you must define
             notificationManager.notify(notificationId, mBuilder.build());
 
-            startActivity(new Intent(this, PayPal.class));
+
 
 
 
