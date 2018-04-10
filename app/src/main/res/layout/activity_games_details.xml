@@ -41,13 +41,13 @@
                 app:srcCompat="@drawable/phone_icon" />
 
             <ImageButton
-                android:id="@+id/imageWebsite"
+                android:id="@+id/imageQuestion"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="300dp"
                 android:layout_marginTop="30dp"
                 android:background="#ffffff"
-                app:srcCompat="@drawable/website_icon" />
+                app:srcCompat="@drawable/question_mark" />
 
             <TextView
                 android:id="@+id/textViewDetailsName"

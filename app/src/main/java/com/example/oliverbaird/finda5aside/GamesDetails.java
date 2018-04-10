@@ -77,7 +77,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
     Button buttonBook;
 
-    ImageButton imageCall, imageLocation, imageWebsite, imageMessage, imageButtonArrowUp, imageButtonArrowDown;
+    ImageButton imageCall, imageLocation, imageQuestion, imageMessage, imageButtonArrowUp, imageButtonArrowDown;
 
     private TextView textViewDetailsLocation,textViewDetailsCost, textViewDetailsSpaces, textViewDetailsDate,
             textViewDetailsSkill,textViewDetailsName,textViewDetailsTime, textViewDetailsNumber, textViewReviewName, textViewReviewNumber;
@@ -118,7 +118,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
         imageCall = findViewById(R.id.imageCall);
         imageLocation = findViewById(R.id.imageLocation);
-        imageWebsite = findViewById(R.id.imageWebsite);
+        imageQuestion = findViewById(R.id.imageQuestion);
         imageMessage = findViewById(R.id.imageMessage);
         imageButtonArrowDown = findViewById(R.id.imageButtonArrowDown);
         imageButtonArrowUp = findViewById(R.id.imageButtonArrowUp);
@@ -206,6 +206,14 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             public void onClick(View V) {
 
                 buttonClickLocation();
+            }
+        });
+
+        imageQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View V) {
+
+                startActivity(new Intent(GamesDetails.this, Information.class));
             }
         });
 
