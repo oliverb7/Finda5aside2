@@ -168,7 +168,8 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/textViewNumberBook"
                 android:layout_alignParentEnd="true"
-                android:layout_marginBottom="9dp" />
+                android:layout_marginBottom="9dp"
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textViewNumberBook"
@@ -185,7 +186,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/buttonBook"
                 android:layout_alignStart="@+id/textViewNameBook"
-                android:layout_marginBottom="59dp" />
+                android:layout_marginBottom="59dp"
+                android:inputType="phone" />
 
             <Button
                 android:id="@+id/buttonBook"
@@ -237,164 +239,6 @@
 
         </RelativeLayout>
 
-    <!--<RelativeLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content">-->
-
-        <!--<ImageView-->
-            <!--android:id="@+id/imageViewLocationPic"-->
-            <!--android:layout_width="200dp"-->
-            <!--android:layout_height="200dp"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--app:srcCompat="@drawable/pec_pic" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textViewDetailsName"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignStart="@+id/textViewDetailsLocation"-->
-            <!--android:layout_below="@+id/imageViewLocationPic"-->
-            <!--android:text="James Kennedy"-->
-            <!--android:textSize="20dp"-->
-            <!--android:textStyle="bold" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textViewDetailsLocation"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_below="@+id/imageViewLocationPic"-->
-            <!--android:layout_marginStart="21dp"-->
-            <!--android:layout_marginTop="35dp"-->
-            <!--android:text="PEC Queens"-->
-            <!--android:textStyle="bold"-->
-            <!--android:textSize="20dp"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textViewDetailsCost"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignStart="@+id/textViewDetailsLocation"-->
-            <!--android:layout_below="@+id/textViewDetailsLocation"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:text="£5"-->
-            <!--android:textStyle="bold"-->
-            <!--android:textSize="20dp" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textViewDetailsDate"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignStart="@+id/textViewDetailsCost"-->
-            <!--android:layout_below="@+id/textViewDetailsCost"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:text="21/02/2018"-->
-            <!--android:textStyle="bold"-->
-            <!--android:textSize="20dp"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textViewDetailsNumber"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignStart="@+id/textViewDetailsDate"-->
-            <!--android:layout_below="@+id/textViewDetailsDate"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:text="0792836273"-->
-            <!--android:textStyle="bold"-->
-            <!--android:textSize="20dp" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textViewDetailsSpaces"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignStart="@+id/textViewDetailsNumber"-->
-            <!--android:layout_below="@+id/textViewDetailsNumber"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:text="3 Spaces"-->
-            <!--android:textSize="20dp"-->
-            <!--android:textStyle="bold" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textViewDetailsSkill"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignStart="@+id/textViewDetailsSpaces"-->
-            <!--android:layout_below="@+id/textViewDetailsSpaces"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:textSize="20dp"-->
-            <!--android:text="Beginner"-->
-            <!--android:textStyle="bold" />-->
-
-        <!--<Button-->
-            <!--android:id="@+id/buttonLocation"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignBaseline="@+id/buttonCall"-->
-            <!--android:layout_alignBottom="@+id/buttonCall"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_marginStart="4dp"-->
-            <!--android:background="@drawable/shapes_rounded"-->
-            <!--android:text="Location"-->
-            <!--android:textColor="#ffffff" />-->
-
-        <!--<Button-->
-            <!--android:id="@+id/buttonCall"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:layout_alignStart="@+id/imageViewLocationPic"-->
-            <!--android:layout_marginBottom="34dp"-->
-            <!--android:background="@drawable/shapes_rounded"-->
-            <!--android:layout_marginStart="4dp"-->
-            <!--android:text="Call"-->
-            <!--android:textColor="#ffffff" />-->
-
-        <!--<Button-->
-            <!--android:id="@+id/buttonText"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignBaseline="@+id/buttonCall"-->
-            <!--android:layout_alignBottom="@+id/buttonCall"-->
-            <!--android:layout_alignEnd="@+id/imageViewLocationPic"-->
-            <!--android:background="@drawable/shapes_rounded"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:text="Text"-->
-            <!--android:textColor="#ffffff" />-->
-
-
-        <!--<Button-->
-            <!--android:id="@+id/buttonBook"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignBaseline="@+id/buttonText"-->
-            <!--android:layout_alignBottom="@+id/buttonText"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_marginEnd="4dp"-->
-            <!--android:layout_marginStart="4dp"-->
-            <!--android:background="@drawable/shapes_rounded"-->
-            <!--android:text="Book"-->
-            <!--android:textColor="#ffffff" />-->
-
-        <!--<ListView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:layout_toEndOf="@+id/textViewDetailsSkill" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textViewDetailsTime"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignStart="@+id/textViewDetailsSkill"-->
-            <!--android:layout_below="@+id/textViewDetailsSkill"-->
-            <!--android:layout_marginTop="12dp"-->
-            <!--android:text="6pm"-->
-            <!--android:textSize="20dp"-->
-            <!--android:textStyle="bold" />-->
-
-
-    <!--</RelativeLayout>-->
 
     <android.support.design.widget.NavigationView
         app:headerLayout="@layout/header"

@@ -133,8 +133,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         startService(m_service);
 
 
-//
-//        //ensuring that the booking button is not clicked more than once
+
+        //ensuring that the booking button is not clicked more than once
 //        findViewById(R.id.buttonBook).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -210,14 +210,6 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         });
 
 
-//        buttonBook.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View V) {
-//
-//                pay();
-//            }
-//        });
-
         imageButtonArrowUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
@@ -238,21 +230,45 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
     void pay(View view) {
 
+        String name = editTextNameBook.getText().toString().trim();
+        String number = editTextNumberBook.getText().toString().trim();
+
         final Bundle detailBundle = getIntent().getExtras();
 
-        String costPay = detailBundle.getString("cost");
+        String spaces2 = detailBundle.getString("spaces");
+        int spacesInt = Integer.parseInt(spaces2);
 
-        int costPayPal = Integer.parseInt(costPay);
+            if(name.isEmpty()){
+                Toast.makeText(this, "Please enter a name", Toast.LENGTH_SHORT).show();
+            } else
+
+            if(number.isEmpty()){
+                Toast.makeText(this, "Please enter a number", Toast.LENGTH_SHORT).show();
+            } else
+
+            if(spacesInt >= 1) {
 
 
-        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(costPayPal), "GBP",
-                "Pay for football", PayPalPayment.PAYMENT_INTENT_SALE);
+                String costPay = detailBundle.getString("cost");
 
-        Intent intent = new Intent(this, PaymentActivity.class);
-        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, m_configuration);
-        intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payPalPayment);
-        startActivityForResult(intent, m_PAYPAL_REQUEST_CODE);
-    }
+                int costPayPal = Integer.parseInt(costPay);
+
+                PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(costPayPal), "GBP",
+                        "Pay for football", PayPalPayment.PAYMENT_INTENT_SALE);
+
+                Intent intent = new Intent(this, PaymentActivity.class);
+                intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, m_configuration);
+                intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payPalPayment);
+                startActivityForResult(intent, m_PAYPAL_REQUEST_CODE);
+
+            } else if (spacesInt == 0){
+
+                Toast.makeText(GamesDetails.this, "There are no spaces left for this game", Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){
 
@@ -293,7 +309,6 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             databaseGames.child(id).child("reviewNumber").setValue(stringVotes);
         }
 
-
     private void downVote(){
 
             final Bundle detailBundle = getIntent().getExtras();
@@ -309,12 +324,10 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
     public void buttonClickBook(){
 
-        final Bundle detailBundle = getIntent().getExtras();
+            final Bundle detailBundle = getIntent().getExtras();
 
-        String spaces2 = detailBundle.getString("spaces");
-        int spacesInt = Integer.parseInt(spaces2);
-
-        if(spacesInt >= 1) {
+            String spaces2 = detailBundle.getString("spaces");
+            int spacesInt = Integer.parseInt(spaces2);
 
             spacesInt--;
             Toast.makeText(GamesDetails.this, "You have successfully booked a place", Toast.LENGTH_SHORT).show();
@@ -323,7 +336,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             String id = detailBundle.getString("id");
             databaseGames.child(id).child("gameSpaces").setValue(spacesRemaining);
             databaseGamesPrivate.child(id).child("gameSpaces").setValue(spacesRemaining);
-//            buttonBook.setEnabled(false);
+
 
             userName = editTextNameBook.getText().toString();
             userNumber = editTextNumberBook.getText().toString();
@@ -352,27 +365,17 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             // notificationId is a unique int for each notification that you must define
             notificationManager.notify(notificationId, mBuilder.build());
 
-
-
-
-
-
-        } else if (spacesInt == 0){
-
-            Toast.makeText(GamesDetails.this, "There are no spaces left for this game", Toast.LENGTH_SHORT).show();
-        }
+//            buttonBook.setEnabled(false);
 
     }
 
     private void buttonClickLocation(){
 
         final Bundle detailBundle = getIntent().getExtras();
-
         Intent intent2 = new Intent(getApplicationContext(), Location.class);
         String location = detailBundle.getString("location");
         intent2.putExtra("location", location);
         startActivity(intent2);
-
     }
 
     private void buttonTextClick(){
@@ -412,7 +415,6 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         } else {
             Toast.makeText(GamesDetails.this, "Enter a phone number", Toast.LENGTH_SHORT).show();
         }
-
     }
 
 

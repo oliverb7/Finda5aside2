@@ -49,7 +49,6 @@
         <activity android:name=".ForgotPassword" />
         <activity android:name=".Location" />
         <activity android:name=".Information" />
-        <activity android:name=".PayPal"></activity>
     </application>
 
 </manifest>
