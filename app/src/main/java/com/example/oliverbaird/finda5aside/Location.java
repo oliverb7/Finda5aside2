@@ -15,6 +15,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class Location extends FragmentActivity implements
         OnMapReadyCallback {
 
+    //the different coordiantes for the various 5aside pitches
+
     private static final LatLng PLAYBALL = new LatLng(54.5968815,-5.8343839);
     private static final LatLng PEC = new LatLng(54.5808641, -5.9318286);
     private static final LatLng OLYMPIA = new LatLng(54.5854456, -5.9619947);
@@ -44,6 +46,9 @@ public class Location extends FragmentActivity implements
     @Override
     public void onMapReady(GoogleMap map) {
 
+        //the bundle will retrieve the string from the previous activity and depending on the location,
+        // the Google Maps coordinates will be displayed for that location
+
         final Bundle detailBundleMaps = getIntent().getExtras();
 
         if (detailBundleMaps != null) {
@@ -51,7 +56,6 @@ public class Location extends FragmentActivity implements
             Toast.makeText(Location.this, "Here is " + mapLocation, Toast.LENGTH_SHORT).show();
 
             mMap = map;
-//            mMap.clear();
 
             if (mapLocation.equals("PlayBall Stormont")) {
 
@@ -135,8 +139,6 @@ public class Location extends FragmentActivity implements
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LAGAN, 15));
 
             }
-
-
         }
     }
 }

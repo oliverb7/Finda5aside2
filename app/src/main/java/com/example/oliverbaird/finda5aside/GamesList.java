@@ -18,6 +18,8 @@ import java.util.List;
  * Created by oliverbaird on 12/02/2018.
  */
 
+//inflates the content from the database onto the game_view layout
+
 public class GamesList extends ArrayAdapter<GameDB> {
 
     private Activity context;

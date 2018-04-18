@@ -71,8 +71,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
 
+                //if the user account can be created, send the user a verification email
+
+                if (task.isSuccessful()) {
                     sendEmailVerification();
 
                 } else {

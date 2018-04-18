@@ -87,6 +87,8 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    //saveUserInfo saves the new users data to Firebase storage
+
     private void saveUserInfo(){
 
         String displayName = editTextName.getText().toString();
@@ -122,6 +124,8 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
         }
 
     }
+
+    //onActivityResult sets the selected image to the new image
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

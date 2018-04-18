@@ -41,6 +41,8 @@ public class MyGamesDetails extends AppCompatActivity implements NavigationView.
         textViewMyGamesDetailsDate = findViewById(R.id.textViewMyGamesDetailsDate);
         textViewMyGamesDetailsTime = findViewById(R.id.textViewMyGamesDetailsTime);
 
+        //retrieving the game data from the previous activity
+
         Bundle detailBundle = getIntent().getExtras();
 
         if (detailBundle != null)

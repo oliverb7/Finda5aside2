@@ -133,19 +133,6 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         startService(m_service);
 
 
-
-        //ensuring that the booking button is not clicked more than once
-//        findViewById(R.id.buttonBook).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // mis-clicking prevention, using threshold of 1000 ms
-//                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
-//                    return;
-//                }
-//                mLastClickTime = SystemClock.elapsedRealtime();
-//            }
-//        });
-
         mAuth = FirebaseAuth.getInstance();
         final String uid = mAuth.getCurrentUser().getUid();
         databaseGamesPrivate = FirebaseDatabase.getInstance().getReference("gamesPersonal").child(uid);
@@ -183,7 +170,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
         }
 
-        //click listeners for finding location, texting, calling and booking.
+        //click listeners for finding location, texting, calling, information booking.
 
         imageCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -236,6 +223,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
     }
 
+    //User must enter the correct details in order to advance and then they can make payment
+
     void pay(View view) {
 
         String name = editTextNameBook.getText().toString().trim();
@@ -277,6 +266,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
         }
 
+    //Decides the output of the PayPal transaction on whether or not it has been successful
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){
 
@@ -298,10 +288,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
                     } else
                         Toast.makeText(this, "Payment Declined", Toast.LENGTH_SHORT).show();
                 }
-
             }
         }
-//        else Toast.makeText(this, "Payment Declined", Toast.LENGTH_SHORT).show();
     }
 
     private void upVote(){
@@ -334,6 +322,9 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
             final Bundle detailBundle = getIntent().getExtras();
 
+            // when a user successfully books the spaces available count will then be reduced,
+            // by changing the string spaces to an int and subtracting 1.
+
             String spaces2 = detailBundle.getString("spaces");
             int spacesInt = Integer.parseInt(spaces2);
 
@@ -341,6 +332,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             Toast.makeText(GamesDetails.this, "You have successfully booked a place", Toast.LENGTH_SHORT).show();
             String spacesRemaining = String.valueOf(spacesInt);
             textViewDetailsSpaces.setText(spacesRemaining);
+
+            //the id of the game will then be found, and the tables will be updated with the new value
             String id = detailBundle.getString("id");
             databaseGames.child(id).child("gameSpaces").setValue(spacesRemaining);
             databaseGamesPrivate.child(id).child("gameSpaces").setValue(spacesRemaining);
@@ -348,6 +341,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
             userName = editTextNameBook.getText().toString();
             userNumber = editTextNumberBook.getText().toString();
+
+            //formation of the text message for the host from the player
 
             textDetail = "Hi " + detailBundle.getString("name") + " my name is " + userName + " and I have just signed up to play at your game on "
                     + detailBundle.getString("date") + "." + " If there are any changes my phone number is " + userNumber + ".";
@@ -358,7 +353,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             //creation of the notification for the user once they have booked into a game
 
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(GamesDetails.this)
-                    .setSmallIcon(R.drawable.logologin)
+                    .setSmallIcon(R.drawable.logo_blank)
                     .setContentTitle("FA5 Booking")
 
                     //setting a style of a lot of text
@@ -372,10 +367,9 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
             // notificationId is a unique int for each notification that you must define
             notificationManager.notify(notificationId, mBuilder.build());
-
-//            buttonBook.setEnabled(false);
-
     }
+
+    //the location class is opened, and the location string is passed through to the next activity
 
     private void buttonClickLocation(){
 
@@ -385,6 +379,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         intent2.putExtra("location", location);
         startActivity(intent2);
     }
+
+    //in order to send a text the phone will check permissions, and if these are all successful the user will be able to text the host.
 
     private void buttonTextClick(){
 
@@ -408,6 +404,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, TEXT_PERMISSION);
         }
     }
+
+    //permissions are checked and if successful the user can call the host
 
     private void buttonCallClick(){
 
@@ -462,32 +460,26 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         {
             startActivity(new Intent(this, FindGame.class));
         }
-
         if( id == R.id.addgame)
         {
             startActivity(new Intent(this, CreateGame.class));
         }
-
         if( id == R.id.profile)
         {
             startActivity(new Intent(this, EditProfile.class));
         }
-
         if( id == R.id.mygames)
         {
             startActivity(new Intent(this, MyGames.class));
         }
-
         if( id == R.id.information)
         {
             startActivity(new Intent(this, Information.class));
         }
-
         if( id == R.id.settings)
         {
             startActivity(new Intent(this, Settings.class));
         }
-
         if( id == R.id.logOut)
         {
             FirebaseAuth.getInstance().signOut();
@@ -495,7 +487,6 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
-
         return false;
     }
 }

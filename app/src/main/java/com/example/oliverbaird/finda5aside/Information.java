@@ -41,25 +41,22 @@ public class Information extends AppCompatActivity implements NavigationView.OnN
         mPageAdapter = new PageViewAdapter(getSupportFragmentManager());
         mainPage.setAdapter(mPageAdapter);
 
+        //checks the position of the page, and changes the tabs depending on the position
+
         mainPage.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
-
                 changeTabs(position);
-
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
-
 
         menuDrawerLayout=findViewById(R.id.drawerMenu);
         menuToggle=new ActionBarDrawerToggle(Information.this, menuDrawerLayout,R.string.open,R.string.close);
@@ -69,6 +66,8 @@ public class Information extends AppCompatActivity implements NavigationView.OnN
         NavigationView navigationView=findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+    //depending on which tab is selected, will depend on which label is shown
 
     private void changeTabs(int position){
 

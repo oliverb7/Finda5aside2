@@ -43,6 +43,8 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
 
         mAuth = FirebaseAuth.getInstance();
 
+        //Setting up the side menu
+
         menuDrawerLayout=findViewById(R.id.drawerMenu);
         menuToggle=new ActionBarDrawerToggle(CreateGame.this, menuDrawerLayout,R.string.open,R.string.close);
         menuDrawerLayout.addDrawerListener(menuToggle);
@@ -50,6 +52,8 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView=findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Getting an instance of the two database tables
 
         databaseGames = FirebaseDatabase.getInstance().getReference("games");
         databaseGamesPrivate = FirebaseDatabase.getInstance().getReference("gamesPersonal");
@@ -71,6 +75,8 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
             }
         });
     }
+
+    //This method allows the data inputted to be selected and added to the database table through being passed into the game class
 
     private void addGame(){
 
@@ -113,6 +119,8 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
 
         return super.onOptionsItemSelected(item);
     }
+
+    //the different options for a menu option being clicked
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){

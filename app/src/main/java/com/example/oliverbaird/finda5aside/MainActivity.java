@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                //if the login is successful move to the next activity
+                //if the login is successful, check the email is verified
                 if(task.isSuccessful()){
                         checkEmailVerification();
                 } else{
@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void checkEmailVerification(){
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         Boolean emailFlag = firebaseUser.isEmailVerified();
+
+        //if the email is verified move to the home page
 
         if(emailFlag){
             startActivity(new Intent(MainActivity.this, FindGame.class));

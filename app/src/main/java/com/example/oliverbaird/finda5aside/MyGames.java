@@ -43,6 +43,8 @@ public class MyGames extends AppCompatActivity implements NavigationView.OnNavig
 
         mAuth = FirebaseAuth.getInstance();
 
+        //getting the user currently signed in
+
         String uid = mAuth.getCurrentUser().getUid();
 
         menuDrawerLayout= findViewById(R.id.drawerMenu);
@@ -53,7 +55,8 @@ public class MyGames extends AppCompatActivity implements NavigationView.OnNavig
         NavigationView navigationView=findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //reading in private games
+        //reading in private games from the specific user logged in
+
         databaseGamesPrivate = FirebaseDatabase.getInstance().getReference("gamesPersonal").child(uid);
 
         listviewGamesPrivate = findViewById(R.id.listviewGamesPrivate);
@@ -100,7 +103,6 @@ public class MyGames extends AppCompatActivity implements NavigationView.OnNavig
 
                 for(DataSnapshot gameSnapshot: dataSnapshot.getChildren()){
                     GameDB game = gameSnapshot.getValue(GameDB.class);
-
                     gameDBListPrivate.add(game);
                 }
 
@@ -108,8 +110,6 @@ public class MyGames extends AppCompatActivity implements NavigationView.OnNavig
                 listviewGamesPrivate.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 Collections.reverse(gameDBListPrivate);
-
-
             }
 
             @Override

@@ -64,6 +64,9 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
         gameDBList = new ArrayList<>();
 
         listviewGames.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            //creating a bundle for when an item is selected so that the unique game information can be passed onto the next activity GamesDetails
+
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -97,6 +100,7 @@ public class FindGame extends AppCompatActivity implements NavigationView.OnNavi
         });
     }
 
+    //bringing in the information from the database, and putting it through an adapter
     @Override
     protected void onStart() {
 

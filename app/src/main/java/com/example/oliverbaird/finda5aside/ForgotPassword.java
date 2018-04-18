@@ -29,6 +29,8 @@ public class ForgotPassword extends AppCompatActivity {
         buttonResetPassword = findViewById(R.id.buttonResetPassword);
         firebaseAuth = FirebaseAuth.getInstance();
 
+        //the user will enter their email and if it is correct will be sent a password reset email
+
         buttonResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
