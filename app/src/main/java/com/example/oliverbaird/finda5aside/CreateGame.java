@@ -90,24 +90,35 @@ public class CreateGame extends AppCompatActivity implements NavigationView.OnNa
         String skill = spinnerSkill.getSelectedItem().toString();
         String reviewNumber = "0";
 
-        if(!TextUtils.isEmpty(time)) {
+        if(TextUtils.isEmpty(name)) {
+            Toast.makeText(this,"You must enter a name ", Toast.LENGTH_SHORT).show();
+        }else
 
+            if(TextUtils.isEmpty(date))
+        {
+            Toast.makeText(this,"You must enter a date ", Toast.LENGTH_SHORT).show();
+        } else
 
-                String id = databaseGames.push().getKey();
-                String uid = mAuth.getCurrentUser().getUid();
-                GameDB game = new GameDB(id, cost, location, time, spaces, date, number, skill, name, reviewNumber);
+        if(TextUtils.isEmpty(number))
+        {
+            Toast.makeText(this,"You must enter a number ", Toast.LENGTH_SHORT).show();
+        } else
 
-                databaseGames.child(id).setValue(game);
-                databaseGamesPrivate.child(uid).child(id).setValue(game);
+        if(!TextUtils.isEmpty(reviewNumber)) {
 
-                Toast.makeText(this, "Game has been added", Toast.LENGTH_SHORT).show();
+            String id = databaseGames.push().getKey();
+            String uid = mAuth.getCurrentUser().getUid();
+            GameDB game = new GameDB(id, cost, location, time, spaces, date, number, skill, name, reviewNumber);
 
-                startActivity(new Intent(this, FindGame.class));
+            databaseGames.child(id).setValue(game);
+            databaseGamesPrivate.child(uid).child(id).setValue(game);
 
-        }else{
+            Toast.makeText(this, "Game has been added", Toast.LENGTH_SHORT).show();
 
-            Toast.makeText(this,"You must select a time", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, FindGame.class));
+
         }
+
     }
 
     @Override
