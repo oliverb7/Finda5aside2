@@ -78,9 +78,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        //If the email does not match a valid email address
-
-
         if(password.isEmpty()){
             editTextPassword.setError("Please enter a password");
             editTextPassword.requestFocus();

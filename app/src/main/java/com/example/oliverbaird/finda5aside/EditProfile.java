@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,7 +39,7 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
     private ActionBarDrawerToggle menuToggle;
 
     ImageButton imageButton;
-    EditText editTextName, editTextAge;
+    EditText editTextName;
     TextView textViewAddPhoto;
     String profileImgUrl;
     FirebaseAuth mAuth;
@@ -56,7 +57,6 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
         mAuth = FirebaseAuth.getInstance();
 
         editTextName = findViewById(R.id.editTextName);
-        editTextAge = findViewById(R.id.editTextAge);
         imageButton = findViewById(R.id.imageButtonCamera);
         textViewAddPhoto = findViewById(R.id.textViewAddPhoto);
 
@@ -68,6 +68,8 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
 
             }
         });
+
+        loadUserInfo();
 
         findViewById(R.id.buttonSaveDetails).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,20 +111,17 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
                     .build();
 
                     user.updateProfile(profile)
-
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
-
                         public void onComplete(@NonNull Task<Void> task) {
 
-                            if(task.isSuccessful()){
-                                Toast.makeText(EditProfile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-                            }
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(EditProfile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                                }
 
                         }
                     });
         }
-
     }
 
     //onActivityResult sets the selected image to the new image
@@ -172,6 +171,28 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
 
         }
     }
+
+    private void loadUserInfo(){
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if(user != null) {
+            if(user.getPhotoUrl() != null) {
+                Glide.with(this)
+                        .load(user.getPhotoUrl().toString())
+                        .into(imageButton);
+
+
+            }
+
+            if(user.getDisplayName() != null){
+
+                editTextName.setText(user.getDisplayName());
+
+            }
+        }
+    }
+
 
     private void showImageLibrary(){
 
