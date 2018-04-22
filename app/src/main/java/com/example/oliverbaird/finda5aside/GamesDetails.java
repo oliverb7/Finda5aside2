@@ -245,7 +245,6 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
 
             if(spacesInt >= 1) {
 
-
                 String costPay = detailBundle.getString("cost");
 
                 int costPayPal = Integer.parseInt(costPay);
@@ -292,6 +291,8 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    //If the user is to upvote the host, the review number will be increased
+
     private void upVote(){
 
             final Bundle detailBundle = getIntent().getExtras();
@@ -305,6 +306,7 @@ public class GamesDetails extends AppCompatActivity implements NavigationView.On
             databaseGames.child(id).child("reviewNumber").setValue(stringVotes);
         }
 
+    //If the user is to downvote the host, the review number will be decreased
     private void downVote(){
 
             final Bundle detailBundle = getIntent().getExtras();

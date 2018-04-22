@@ -101,7 +101,6 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
             editTextName.requestFocus();
             return;
         }
-
         FirebaseUser user = mAuth.getCurrentUser();
 
         if(user!=null){
@@ -109,16 +108,14 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
                     .setDisplayName(displayName)
                     .setPhotoUri(Uri.parse(profileImgUrl))
                     .build();
-
                     user.updateProfile(profile)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(EditProfile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditProfile.this,
+                                            "Profile Updated", Toast.LENGTH_SHORT).show();
                                 }
-
                         }
                     });
         }
@@ -181,14 +178,9 @@ public class EditProfile extends AppCompatActivity implements NavigationView.OnN
                 Glide.with(this)
                         .load(user.getPhotoUrl().toString())
                         .into(imageButton);
-
-
             }
-
             if(user.getDisplayName() != null){
-
                 editTextName.setText(user.getDisplayName());
-
             }
         }
     }
