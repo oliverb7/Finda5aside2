@@ -59,7 +59,6 @@ public class Location extends FragmentActivity implements
 
             if (mapLocation.equals("PlayBall Stormont")) {
 
-
                 // Add some markers to the map, and add a data object to each marker.
                 mPlayball = mMap.addMarker(new MarkerOptions()
                         .position(PLAYBALL)

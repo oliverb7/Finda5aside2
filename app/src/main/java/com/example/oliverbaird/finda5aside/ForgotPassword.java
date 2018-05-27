@@ -51,7 +51,6 @@ public class ForgotPassword extends AppCompatActivity {
                                 Toast.makeText(ForgotPassword.this,"An error has occurred, please make sure your email is correct!", Toast.LENGTH_LONG).show();
                             }
 
-
                         }
                     });
                 }
